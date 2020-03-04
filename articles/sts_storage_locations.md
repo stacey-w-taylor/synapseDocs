@@ -67,7 +67,7 @@ You can then upload files to this STS Storage Location using the normal methods,
 
 ## Custom STS Storage Locations
 
-You can also create an STS Storage Location using a custom storage location in an external AWS S3 bucket. To set this up, first follow the steps in [Custom Storage Locations](custom_storage_locations.md), up until the step "Set S3 Bucket as Upload Location". Instead, make sure you have an empty Synapse folder, then run the following code.
+You can also create an STS Storage Location using a custom storage location in an external AWS S3 bucket. To set this up, first follow the steps in [Custom Storage Locations](custom_storage_location.md), up until the step "Set S3 Bucket as Upload Location". Instead, make sure you have an empty Synapse folder, then run the following code.
 
 {% include important.html content="You should specify a baseKey in your storage location, which is a folder path in your bucket that all files in the storage location should go into. The baseKey is optional, but if it is not specified, the temporary AWS credentials vended by STS will give users access to the whole bucket." %}
 
@@ -121,7 +121,7 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 Once your STS Storage Location is set up on your Synapse folder, you can add files to Synapse in one of two ways:
 
 1. You can upload files through Synapse, either through [the Synapse website](https://www.synapse.org/) or through the client of your choice.
-2. If you plan to upload files directly to your S3 bucket, or if you already have files in your S3 bucket, you can add representations of those files to Synapse programmatically. Follow the steps at [Adding Files in Your S3 Bucket to Synapse](custom_storage_locations.md#adding-files-in-your-s3-bucket-to-synapse).
+2. If you plan to upload files directly to your S3 bucket, or if you already have files in your S3 bucket, you can add representations of those files to Synapse programmatically. Follow the steps at [Adding Files in Your S3 Bucket to Synapse](custom_storage_location.md#adding-files-in-your-s3-bucket-to-synapse).
 
 {% include note.html content="We recommend picking one of these methods and sticking to it and avoiding mixing methods." %}
 

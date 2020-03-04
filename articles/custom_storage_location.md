@@ -615,4 +615,4 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 
 ## See Also
 
-[STS Storage Locations(sts_storage_locations.md)
+[STS Storage Locations](sts_storage_locations.md)

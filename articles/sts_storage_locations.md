@@ -8,7 +8,7 @@ category: howto
 Using AWS Security Token Service (STS), Synapse can securely grant you temporary AWS credentials with access to data directly in S3. This can be useful if you want to:
 
 * Transfer data in bulk
-* Point your compute cluster directly at the data
+* Allow your compute cluster to read S3 objects using the S3 APIs
 
 All of which you can now do with minimal overhead from Synapse.
 
@@ -30,7 +30,7 @@ syn = synapseclient.login()
 FOLDER = 'syn12345'
 
 destination = {'uploadType':'S3',
-               'stsEnabled':true,
+               'stsEnabled':True,
                'concreteType':'org.sagebionetworks.repo.model.project.S3StorageLocationSetting'}
 destination = syn.restPOST('/storageLocation', body=json.dumps(destination))
 
@@ -47,11 +47,12 @@ project_destination = syn.restPOST('/projectSettings', body = json.dumps(project
 ```r
 #set storage location
 library(synapser)
+library(rjson)
 synLogin()
 folderId <- 'syn12345'
 
 destination <- list(uploadType='S3',
-                    stsEnabled=true,
+                    stsEnabled=TRUE,
                     concreteType='org.sagebionetworks.repo.model.project.S3StorageLocationSetting')
 destination <- synRestPOST('/storageLocation', body=toJSON(destination))
 
@@ -81,7 +82,7 @@ syn = synapseclient.login()
 FOLDER = 'syn12345'
 
 destination = {'uploadType':'S3',
-               'stsEnabled':true,
+               'stsEnabled':True,
                'bucket':'nameofyourbucket',
                'baseKey':'nameofyourbasekey',
                'concreteType':'org.sagebionetworks.repo.model.project.ExternalS3StorageLocationSetting'}
@@ -100,11 +101,12 @@ project_destination = syn.restPOST('/projectSettings', body = json.dumps(project
 ```r
 #set storage location
 library(synapser)
+library(rjson)
 synLogin()
 folderId <- 'syn12345'
 
 destination <- list(uploadType='S3',
-                    stsEnabled=true,
+                    stsEnabled=TRUE,
                     bucket='nameofyourbucket',
                     baseKey='nameofyourbasekey',
                     concreteType='org.sagebionetworks.repo.model.project.ExternalS3StorageLocationSetting')
@@ -144,15 +146,19 @@ AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(awsCredenti
 
 ### From an Existing S3 Bucket
 
-If you have existing data in an S3 bucket, either standalone data or data from a previous Synapse project, you can use the following sample code to migrate your S3 data to a new Synapse folder with an STS Storage Location. Note that you'll need to create a new folder with an STS-enabled storage location, as per the instructions above.
+If you have existing data in an S3 bucket, either standalone data or data from a previous Synapse project, you can use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateS3Bucket.java) to migrate your S3 data to a new Synapse folder with an STS Storage Location.
 
-Stay tuned for a link to the new sample code in an upcoming documentation update!
+{% include note.html content="You'll need to create a new folder with an STS-enabled storage location, as per the instructions above." %}
+
+{% include note.html content="You must be the owner of the storage location in order to import existing S3 files into Synapse this way." %}
 
 ### From A Project With Multiple Buckets
 
-If your Synapse project uses data from multiple S3 buckets, or if the data is in an S3 bucket you don't own, then you may need to download the data and re-upload it a new Synapse folder with an STS Storage Location. Note that this method may incur data transfer costs from S3. Also note that you'll need to create a new folder with an STS-enabled storage location, as per the instructions above.
+If your Synapse project uses data from multiple S3 buckets, or if the data is in an S3 bucket you don't own, then you may need to download the data and re-upload it a new Synapse folder with an STS Storage Location. Use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateSynapseProject.java) to migrate the data in your project.
 
-Stay tuned for a link to the new sample code in an upcoming documentation update!
+{% include note.html content="You'll need to create a new folder with an STS-enabled storage location, as per the instructions above." %}
+
+{% include note.html content="This method may incur data transfer costs from S3." %}
 
 ## Additional Restrictions
 

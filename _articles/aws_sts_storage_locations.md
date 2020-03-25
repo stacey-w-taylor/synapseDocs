@@ -2,7 +2,7 @@
 title: "AWS Security Token Service Storage Locations"
 layout: article
 excerpt: Follow these steps to set up STS Storage Locations and use them to access your S3 data directly.
-category: administration-and-settings
+category: admin-and-settings
 ---
 
 Using AWS Security Token Service (STS), Synapse can securely grant you temporary AWS credentials with access to data directly in S3. This can be useful if you want to:

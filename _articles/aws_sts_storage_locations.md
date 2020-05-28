@@ -70,7 +70,7 @@ You can then upload files to this STS Storage Location using the normal methods,
 
 You can also create an STS Storage Location using a custom storage location in an external AWS S3 bucket. To set this up, first follow the steps in [Custom Storage Locations](custom_storage_location.md), up until the step "Set S3 Bucket as Upload Location". Instead, make sure you have an empty Synapse folder, then run the following code.
 
-{% include important.html content="You should specify a baseKey in your storage location, which is a folder path in your bucket that all files in the storage location should go into. The baseKey is optional, but if it is not specified, the temporary AWS credentials vended by STS will give users access to the whole bucket." %}
+{% include important.html content="If a baseKey is **not** specified, the temporary AWS credentials vended by STS will give users access to the whole bucket. To prevent access to the whole bucket, enter a folder path in your bucket that all files in the storage location should go into as the baseKey. " %}
 
 ##### Python
 

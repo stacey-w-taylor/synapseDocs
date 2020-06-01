@@ -5,7 +5,7 @@ excerpt: Learn how to upload and download data in bulk using a manifest file and
 category: managing-data
 ---
 
-Working with a large number of files on the web can be tedious, especially if you want to download, upload, or set [annotations](annotation_and_query.md) and [provenance](provenance.md). The command line, Python client and R client have convenience functions for bulk upload and download. Uploading require a tab delimited *manifest* where each file to be uploaded and, optionally, annotations to be applied, are specified as a row in the file. Downloading in bulk requires identifying a container (`Folder`, `Project`, `Table`, or `View`) that contains the files of interest. In this article we will cover how to:
+Working with a large number of files on the web can be tedious, especially if you want to download, upload, or set [annotations]({{ site.baseurl }}{% link _articles/annotation_and_query.md %}) and [provenance]({{ site.baseurl }}{% link _articles/provenance.md %}). The command line, Python client and R client have convenience functions for bulk upload and download. Uploading require a tab delimited *manifest* where each file to be uploaded and, optionally, annotations to be applied, are specified as a row in the file. Downloading in bulk requires identifying a container (`Folder`, `Project`, `Table`, or `View`) that contains the files of interest. In this article we will cover how to:
 
 * create a manifest
 * upload the files in bulk
@@ -43,12 +43,12 @@ Download the [template](../assets/downloads/example_manifest_template.tsv).
 
 ### Validate the Manifest and Upload Files
 
-The format of the manifest file (called 'filesToUpload.tsv' in this example) can be validated prior to upload by using the parameter `dryRun` in `syncToSynapse`.
+The format of the manifest file (called 'filesToUpload.tsv' in this example) can be validated prior to upload by using the parameter `dryRun` in `syncToSynapse`. `dryRun` will not upload the data specified in the manifest file. Instead, the client checks the manifest file format, all file paths exist, all files are unique, Provenance can be set (optional) and the parent synId exists. The number of files and total upload size is also summarized in the `dryRun` output. This helps ensure your data upload does not end prematurely due to a typo in the file path or parent synId.
 
 * validate the manifest in the [Python client or command line](https://python-docs.synapse.org/build/html/synapseutils.html#synapseutils.sync.syncToSynapse).
 * validate the manifest in the [R client](https://github.com/Sage-Bionetworks/synapserutils#batch-process). 
 
-Using the validated manifest above, you can now upload the files to Synapse by removing the `dryRun` parameter. Once the upload is complete, you will receive an email notification. This notification will also delineate errors from the upload.
+After validating the manifest, you can now upload the files to Synapse by removing the `dryRun` parameter. Once the upload is complete, you will receive an email notification. This notification will also show any errors from the upload.
 
 ## Downloading Data in Bulk
 
@@ -59,7 +59,9 @@ Files can be downloaded in bulk using the `syncFromSynapse` function. This funct
 
 ## Editing in Bulk
 
-You can edit files in bulk by changing the values in the manifest and pushing it up to Synapse using the `syncToSynapse` function. The manifest allows you to modify everything: file path, provenance, annotations, and versions. However, if only annotations are being updated, we recommend using our [File Views](views.md) feature.
+You can modify values in the manifest and re-upload it to Synapse using `syncToSynapse` to edit files in bulk. The manifest allows you to modify everything: file path, provenance, annotations, and versions. If the files have not changed and you only want to update the file annotations, add a column called **forceVersion** to the manifest with the value **False** for each row. This will stop `syncToSynapse` from uploading new versions of the files.
+
+You can also update annotations using [File Views]({{ site.baseurl }}{% link _articles/views.md %}).
 
 Please note that you cannot move things with a manifest. If the parentId is changed, it will create a copy and the file will exist in two different locations.
 
@@ -67,4 +69,4 @@ Please note that you cannot move things with a manifest. If the parentId is chan
 
 # See Also
 
-[Downloading Data](downloading_data.md), [Provenance](provenance.md), [Annotations and Queries](annotation_and_query.md), [File Views](views.md), [Files and Versioning](files_and_versioning.md)
+[Downloading Data]({{ site.baseurl }}{% link _articles/downloading_data.md %}), [Provenance]({{ site.baseurl }}{% link _articles/provenance.md %}), [Annotations and Queries]({{ site.baseurl }}{% link _articles/annotation_and_query.md %}), [File Views]({{ site.baseurl }}{% link _articles/views.md %}), [Files and Versioning]({{ site.baseurl }}{% link _articles/files_and_versioning.md %})

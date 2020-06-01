@@ -35,6 +35,10 @@ Make the following adjustments to customize it to work with Synapse:
 * Select the newly created bucket and click the **Permissions** tab.
   * Select the **Bucket Policy** button and copy one of the below policies (read-only or read-write permissions). Change the name of `Resource` from “synapse-share.yourcompany.com” to the name of your new bucket (twice) and ensure that the `Principal` is `"AWS":"325565585839"`. This is Synapse's account number.
 
+{% include note.html content="Files in an external bucket will not be automatically added to Synapse." %}
+
+To add files to Synapse that are already in your bucket, see [Adding Files in Your S3 Bucket to Synapse]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#adding-files-in-your-s3-bucket-to-synapse) below.
+
 ### Read-write permissions
 
 To allow authorized Synapse users to upload data to your bucket set read-write permissions need to be set on that bucket (you allow Synapse to upload and retrieve files):
@@ -58,9 +62,15 @@ To allow authorized Synapse users to upload data to your bucket set read-write p
 }
 ```
 
-For **read-write** permissions, you also need to create an object that proves to the Synapse service that you own this bucket. This can be done by creating an **[owner.txt](../assets/downloads/owner.txt)** file with your Synapse username and uploading it to your bucket. You can upload the file with the Amazon Web Console or if you have  the [AWS command line client](https://aws.amazon.com/cli/), you can upload using the command line.
+For **read-write** permissions, you also need to create an object that proves to the Synapse service that you own this bucket. This can be done by creating a file named **[owner.txt](../assets/downloads/owner.txt)** that contains a **line separated** list of *user identifiers* that are allowed to register and upload to the bucket. Valid *user identifiers* are a numeric Synapse user id or the numeric id of a team the user is a member of.
 
-<img id="imageSmall" src="../assets/images/ownerTxt.png">
+The id of the user or the team can be obtained by navigating to the user profile or to the team page. The id is the numeric value shown in the browser URL bar after the *Profile:* or *Team:* prefixes:
+
+<img id="imageSmall" src="../assets/images/browserUserId.png">
+
+<img id="imageSmall" src="../assets/images/browserTeamId.png">
+
+You can upload the file with the Amazon Web Console or the [AWS command line client](https://aws.amazon.com/cli/).
 
 ##### Command line
 
@@ -204,6 +214,7 @@ project_destination = syn.restPOST('/projectSettings', body = json.dumps(project
 ```r
 #set storage location
 library(synapser)
+library(rjson)
 synLogin()
 projectId <- 'syn12345'
 
@@ -224,7 +235,7 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 
  Navigate to your **Project/Folder -> Tools -> Change Storage Location**. In the resulting pop-up, select the `Amazon S3 Bucket` option and fill in the relevant information, where Bucket is the name of your external bucket, Base Key is the name of the folder in your bucket to upload to, and Banner is a short description such as who owns the storage location:
 
-<img id="image" src="../assets/images/external_s3.png">
+<img id="image" style="width: 50%;" src="../assets/images/external_s3.png">
 
 ### Adding Files in Your S3 Bucket to Synapse
 
@@ -263,7 +274,7 @@ fileHandle <- list(concreteType='org.sagebionetworks.repo.model.file.S3FileHandl
                    storageLocationId = destination$storageLocationId,
                    bucketName = destination$bucket,
                    key ='s3ObjectKey')
-fileHandle <- synRestPOST('/externalFileHandle/s3', body=toJSON(fileHandle), endpoint = synapseFileServiceEndpoint())
+fileHandle <- synRestPOST('/externalFileHandle/s3', body=toJSON(fileHandle), endpoint = 'https://file-prod.prod.sagebase.org/file/v1')
 
 f <- File(dataFileHandleId=fileHandle$id, parentId=projectId)
 
@@ -280,9 +291,20 @@ Make the following adjustments to customize it to work with Synapse:
 * Select the newly created bucket and click the **Permissions** tab.
 * Select the **Add members** button and enter the member `synapse-svc-prod@uplifted-crow-246820.iam.gserviceaccount.com`. This is Synapse's service account. Give the account the permissions "Storage Legacy Bucket Reader" and "Storage Object Viewer" for read permission. To allow Synapse to upload files, additionally grant the "Storage Legacy Bucket Writer" permission.
 
-For **read-write** permissions, you also need to create an object that proves to the Synapse service that you own this bucket. This can be done by creating an **<a href="../assets/downloads/owner.txt" download="owner.txt">owner.txt</a>** file with your Synapse username and uploading it to your bucket. You can upload the file with the Google Cloud Platform Console, or using the command line [gsutil application](https://cloud.google.com/storage/docs/gsutil).
+For **read-write** permissions, you also need to create an object that proves to the Synapse service that you own this bucket. This can be done by creating a file named **[owner.txt](../assets/downloads/owner.txt)** that contains a **line separated** list of *user identifiers* that are allowed to register the bucket and uploading it to your bucket. Valid *user identifiers* are: a Synapse user id or the id of a team the user is a member of.
+
+The id of the user or the team can be obtained navigating to the user profile or to the team page, the id is the numeric value shown in the browser URL bar after the *Profile:* or *Team:* prefixes:
+
+<img id="imageSmall" src="../assets/images/browserUserId.png">
+
+<img id="imageSmall" src="../assets/images/browserTeamId.png">
+
+You can upload the file with the Google Cloud Platform Console, or using the command line [gsutil application](https://cloud.google.com/storage/docs/gsutil).
 
 <img id="imageSmall" src="../assets/images/ownerTxt.png">
+
+{% include note.html content="Files in an external bucket will not be automatically added to Synapse." %}
+To add files to Synapse that are already in your bucket, see [Adding Files in Your S3 Bucket to Synapse]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#adding-files-in-your-s3-bucket-to-synapse) below.
 
 ##### Command line
 
@@ -293,7 +315,7 @@ gsutil cp owner.txt gs://nameofmybucket/nameofmyfolder
 
 ##### Web
 
-Navigate to your bucket on the Google Cloud Console and select the **Upload files** button to upload your text file.
+Navigate to your bucket on the Google Cloud Console and select the **Upload files** button to upload your text file into the folder where you want your data.
 
 ### Make sure to enable cross-origin resource sharing (CORS)
 
@@ -337,91 +359,9 @@ PROJECT = 'syn12345'
 
 destination = {'uploadType':'GOOGLECLOUDSTORAGE', 
                'concreteType':'org.sagebionetworks.repo.model.project.ExternalGoogleCloudStorageLocationSetting',
-               'bucket':'nameofyourbucket'}
-destination = syn.restPOST('/storageLocation', body=json.dumps(destination))
-
-project_destination ={'concreteType': 'org.sagebionetworks.repo.model.project.UploadDestinationListSetting', 
-                      'settingsType': 'upload'}
-project_destination['locations'] = [destination['storageLocationId']]
-project_destination['projectId'] = PROJECT
-
-project_destination = syn.restPOST('/projectSettings', body = json.dumps(project_destination))
-```
-
-##### R
-
-Please see the [REST docs](http://rest-docs.synapse.org/rest/org/sagebionetworks/repo/model/project/ExternalS3StorageLocationSetting.html) for more information on setting external storage location settings using our REST API.
-
-## Setting Up an External Google Cloud Storage Bucket
-
-Follow the documentation on Google Cloud's site to **[Create a Bucket](https://cloud.google.com/storage/docs/creating-buckets)**.
-
-Make the following adjustments to customize it to work with Synapse:  
-
-* Select the newly created bucket and click the **Permissions** tab.
-    * Select the **Add members** button and enter the member `synapse-svc-prod@uplifted-crow-246820.iam.gserviceaccount.com`. This is Synapse's service account. Give the account the permissions "Storage Legacy Bucket Reader" and "Storage Object Viewer" for read permission. To allow Synapse to upload files, additionally grant the "Storage Legacy Bucket Writer" permission.
-
-
-<br/>
-
-For **read-write** permissions, you also need to create an object that proves to the Synapse service that you own this bucket. This can be done by creating an **<a href="../assets/downloads/owner.txt" download="owner.txt">owner.txt</a>** file with your Synapse username and uploading it to your bucket. You can upload the file with the Google Cloud Platform Console, or using the [gsutil application](https://cloud.google.com/storage/docs/gsutil), you can upload using the command line. 
-
-<img id="imageSmall" src="../assets/images/ownerTxt.png">
-
-##### Command line
-
-```bash
-# copy your owner.txt file to your s3 bucket
-gsutil cp owner.txt gs://nameofmybucket/nameofmyfolder
-```
-
-##### Web
-
-Navigate to your bucket on the Google Cloud Console and select the **Upload files** button to upload your text file.
-
-<br/>
-
-### Make sure to enable cross-origin resource sharing (CORS)
-Follow the instructions for [Setting CORS on a bucket](https://cloud.google.com/storage/docs/configuring-cors). You may have to insall the [gsutil application](https://cloud.google.com/storage/docs/gsutil).
-
-Using **gsutil**, you can set the CORS configuration with the command 
-
-```
-gsutil cors set cors-json-file.json gs://example-bucket
-```
-
-Where cors-json-file.json is a local file that contains a valid CORS configuration, like the configuration below. The configuration must include Synapse as a permitted `origin`. An example CORS configuration that would allow this is:
-
-```json
-[
-    {
-        "maxAgeSeconds": 3000,
-        "method": ["GET", "POST", "PUT", "HEAD"],
-        "origin": ["*"],
-        "responseHeader": ["Content-Type"]
-    }
-]
-```
-
-<br/>
-For more information, please read: [Configuring cross-origin resource sharing (CORS)](https://cloud.google.com/storage/docs/configuring-cors)
-
-### Set Google Cloud Bucket as Upload Location
-
-By default, your `Project` uses Synapse storage. You can use the external bucket configured above via our programmatic clients or web client.
-
-##### Python
-
-```python
-# Set storage location
-import synapseclient
-import json
-syn = synapseclient.login()
-PROJECT = 'syn12345'
-
-destination = {'uploadType':'GOOGLECLOUDSTORAGE', 
-               'concreteType':'org.sagebionetworks.repo.model.project.ExternalGoogleCloudStorageLocationSetting',
-               'bucket':'nameofyourbucket'}
+               'bucket':'nameofyourbucket',
+               'baseKey': 'nameOfSubfolderInBucket' # optional, only necessary if using a subfolder in your bucket
+               }
 destination = syn.restPOST('/storageLocation', body=json.dumps(destination))
 
 project_destination ={'concreteType': 'org.sagebionetworks.repo.model.project.UploadDestinationListSetting', 
@@ -437,12 +377,16 @@ project_destination = syn.restPOST('/projectSettings', body = json.dumps(project
 ```r
 #set storage location
 library(synapser)
+library(rjson)
 synLogin()
 projectId <- 'syn12345'
 
 destination <- list(uploadType='GOOGLECLOUDSTORAGE', 
                     concreteType='org.sagebionetworks.repo.model.project.ExternalGoogleCloudStorageLocationSetting',
-                    bucket='nameofyourbucket')
+                    bucket='nameofyourbucket',
+                    baseKey='nameOfSubfolderInBucket' # optional, only necessary if using a subfolder in your bucket
+               }
+)
 destination <- synRestPOST('/storageLocation', body=toJSON(destination))
 
 projectDestination <- list(concreteType='org.sagebionetworks.repo.model.project.UploadDestinationListSetting', 
@@ -456,6 +400,47 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 ##### Web
 
 Navigate to your **Project/Folder -> Tools -> Change Storage Location**. In the resulting pop-up, select the **Google Cloud Storage Bucket** option and fill in the relevant information, where Bucket is the name of your external bucket, Base Key is the name of the folder in your bucket to upload to, and Banner is a short description such as who owns the storage location.
+
+### Adding Files in Your Google Cloud Bucket to Synapse
+
+If your bucket is set for read-write access, files can be added to the bucket using the standard Synapse interface (web or programmatic). 
+
+If the bucket is read-only or you already have content in the bucket, you will have to add representations of the files in Synapse programmatically. This is done using a `FileHandle`, which is a Synapse representation of the file. 
+
+##### Python
+```python
+externalFileToAdd = 'googleCloudObjectKey' # put the key for the file to add here
+
+# create filehandle
+fileHandle = {'concreteType': 'org.sagebionetworks.repo.model.file.GoogleCloudFileHandle', 
+              'fileName'    : 'nameOfFile.csv',
+              'contentSize' : "sizeInBytes",
+              'contentType' : 'text/csv',
+              'contentMd5' :  'md5',
+              'bucketName' : destination['bucket'],
+              'key' : externalFileToAdd,
+              'storageLocationId': destination['storageLocationId']}
+fileHandle = syn.restPOST('/externalFileHandle/googleCloud', json.dumps(fileHandle), endpoint=syn.fileHandleEndpoint)
+f = synapseclient.File(parentId=PROJECT, dataFileHandleId = fileHandle['id'])
+f = syn.store(f)
+```
+##### R
+```r
+externalFileToAdd <- 'googleCloudObjectKey' # put the key for the file to add here
+
+# create filehandle
+fileHandle <- list(concreteType='org.sagebionetworks.repo.model.file.GoogleCloudFileHandle', 
+                   fileName    = 'nameOfFile.csv',
+                   contentSize = 'sizeInBytes',
+                   contentType = 'text/csv',
+                   contentMd5 =  'md5',
+                   storageLocationId = destination$storageLocationId,
+                   bucketName = destination$bucket,
+                   key = externalFileToAdd)
+fileHandle <- synRestPOST('/externalFileHandle/googleCloud', body=toJSON(fileHandle), endpoint = 'https://file-prod.prod.sagebase.org/file/v1')
+f <- File(dataFileHandleId=fileHandle$id, parentId=projectId)
+f <- synStore(f)
+```
 
 Please see the [REST docs](http://rest-docs.synapse.org/rest/org/sagebionetworks/repo/model/project/ExternalGoogleCloudStorageLocationSetting.html) for more information on setting external storage location settings using our REST API.
 

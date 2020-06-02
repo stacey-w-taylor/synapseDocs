@@ -18,6 +18,8 @@ All of which you can now do with minimal overhead from Synapse.
 
 You can create an STS Storage Location using Synapse storage. Synapse will store the files for you, but you can still get temporary S3 credentials, scoped to just the files and folders within your STS Storage Location.
 
+{% include note.html content="For Synapse storage, you can request read-only permissions through STS, but not write permissions. You can only add or modify files in Synapse storage through Synapse." %}
+
 To set up the STS Storage Location using Synapse storage, first make sure you have an empty Synapse folder, then run the following code:
 
 ##### Python
@@ -132,6 +134,8 @@ Once your STS Storage Location is set up on your Synapse folder, you can add fil
 Once your STS Storage Location is set up, you can use Synapse to request temporary AWS credentials with direct access to your data in S3. These temporary credentials are good for up to 12 hours.
 
 To get these temporary credentials, you may use our [REST interface](https://rest-docs.synapse.org/rest/GET/entity/id/sts.html).
+
+{% include note.html content="If your storage location is external storage, you may request read-only or read-write permissions. If that storage location is Synapse storage, you must request read-only permissions." %}
 
 Alternatively, you may use the below sample Java code:
 

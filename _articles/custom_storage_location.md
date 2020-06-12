@@ -600,4 +600,4 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 
 ## See Also
 
-[AWS Security Token Service Storage Locations](aws_sts_storage_locations.html)
+[AWS Security Token Service Storage Locations]({{ site.baseurl }} {% link _articles/aws_sts_storage_locations.md %})

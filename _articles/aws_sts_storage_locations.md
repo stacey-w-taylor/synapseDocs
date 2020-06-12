@@ -2,25 +2,27 @@
 title: "AWS Security Token Service Storage Locations"
 layout: article
 excerpt: Follow these steps to set up STS Storage Locations and use them to access your S3 data directly.
-category: admin-and-settings
+category: managing-data
 ---
 
-Using AWS Security Token Service (STS), Synapse can securely grant you temporary AWS credentials with access to data directly in S3. This can be useful if you want to:
+Using AWS Security Token Service (STS), Synapse can securely grant you temporary AWS credentials to access data directly in S3. This can be useful if you want to:
 
 * Transfer data in bulk
 * Allow your compute cluster to read S3 objects using the S3 APIs
 
-All of which you can now do with minimal overhead from Synapse.
+All of which you can now do with minimal overhead from Synapse. 
+
+There are a few important considerations when determining whether to enable STS on Synapse managed storage compared to external storage with an S3 bucket. With Synapse managed storage, permissions to access are read-only thus data is only accessible to download or compute on directly once STS is enabled. Alternatively, read-only and read-write permissions can be granted on external storage allowing for data to be manipulated directly with the AWS command line interface. Subsequently, connections to Synapse can be updated if data is changed. In some cases, this workflow is preferable.
 
 {% include note.html content="You can only create STS Storage Locations on an empty folder. This is to ensure consistency between the STS Storage Location and the Synapse folder." %}
 
-## Synapse-Managed STS Storage Locations
+## Synapse Managed STS Storage Locations
 
-You can create an STS Storage Location using Synapse storage. Synapse will store the files for you, but you can still get temporary S3 credentials, scoped to just the files and folders within your STS Storage Location.
+You can create an STS storage location using Synapse storage. Temporary S3 credentials will grant you access to the files and folders scoped to your STS storage location. 
 
-{% include note.html content="For Synapse storage, you can request read-only permissions through STS, but not write permissions. You can only add or modify files in Synapse storage through Synapse." %}
+{% include note.html content="For Synapse storage, you can request read-only permissions through STS, but not write permissions. Therefore, you can only upload or modify existing files in Synapse storage through the Synapse website or clients." %}
 
-To set up the STS Storage Location using Synapse storage, first make sure you have an empty Synapse folder, then run the following code:
+To set up the STS storage location using Synapse storage, first make sure you have an empty Synapse folder, then run the following code:
 
 ##### Python
 
@@ -66,13 +68,17 @@ projectDestination$projectId <- folderId
 projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestination))
 ```
 
-You can then upload files to this STS Storage Location using the normal methods, either through [the Synapse website](https://www.synapse.org/) or through the client of your choice.
+Once the Synapse managed STS storage location is set up, you can upload files through the [Synapse](https://www.synapse.org/) or the Synapse client of your choice.
 
-## Custom STS Storage Locations
+## External STS Storage Locations
 
-You can also create an STS Storage Location using a custom storage location in an external AWS S3 bucket. To set this up, first follow the steps in [Custom Storage Locations](custom_storage_location.md), up until the step "Set S3 Bucket as Upload Location". Instead, make sure you have an empty Synapse folder, then run the following code.
+You can also create a STS storage location in an external AWS S3 bucket. 
 
-{% include important.html content="If a baseKey is **not** specified, the temporary AWS credentials vended by STS will give users access to the whole bucket. To prevent access to the whole bucket, enter a folder path in your bucket that all files in the storage location should go into as the baseKey. " %}
+There are benefits of creating connections to Synapse from an external bucket. If you already have data stored in S3, or if you have large amounts of data that you want to transfer with the AWS command line interface, you can avoid uploading data to Synapse managed storage by creating connections directly to the S3 bucket. Enabling an STS storage location in the external bucket allows access to the S3 directly for future computing.
+
+Follow the steps in the [Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#setting-up-an-external-aws-s3-bucket) article to set read-write or read-only permissions on your external S3 bucket and enable cross-origin resource sharing (CORS). You may use AWS cloudformation for set up. Instead of [setting the S3 bucket as upload location]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#set-s3-bucket-as-upload-location), complete set up by running the following code with an empty Synapse folder:
+
+{% include important.html content="If a baseKey is not specified, the temporary AWS credentials vended by STS will give users access to the whole bucket. To prevent access to the whole bucket, enter a folder path in your bucket that all files in the storage location should go into as the baseKey. " %}
 
 ##### Python
 
@@ -122,22 +128,18 @@ projectDestination$projectId <- folderId
 projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestination))
 ```
 
-Once your STS Storage Location is set up on your Synapse folder, you can add files to Synapse in one of two ways:
-
-1. You can upload files through Synapse, either through [the Synapse website](https://www.synapse.org/) or through the client of your choice.
-2. If you plan to upload files directly to your S3 bucket, or if you already have files in your S3 bucket, you can add representations of those files to Synapse programmatically. Follow the steps at [Adding Files in Your S3 Bucket to Synapse](custom_storage_location.md#adding-files-in-your-s3-bucket-to-synapse).
+Once your STS storage location is set up on your Synapse folder, you can add files through the [Synapse](https://www.synapse.org/) website or the Synapse client of your choice. If you plan to upload files directly to your S3 bucket, or if you already have files in your S3 bucket, you can add representations of those files to Synapse programmatically. Follow the [steps to add files in your S3 bucket to Synapse]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#adding-files-in-your-s3-bucket-to-synapse).
 
 {% include note.html content="We recommend picking one of these methods and sticking to it and avoiding mixing methods." %}
 
 ## Obtaining Temporary S3 Credentials
 
-Once your STS Storage Location is set up, you can use Synapse to request temporary AWS credentials with direct access to your data in S3. These temporary credentials are good for up to 12 hours.
+Once your STS storage location is set up, you can use Synapse to request temporary AWS credentials to access your data in S3 directly. These temporary credentials are active for 12 hours.
 
-To get these temporary credentials, you may use our [REST interface](https://rest-docs.synapse.org/rest/GET/entity/id/sts.html).
+To get temporary credentials, Python and Java code is provided below. The [REST interface](https://rest-docs.synapse.org/rest/GET/entity/id/sts.html) is also available to request temporary credentials.
 
-{% include note.html content="If your storage location is external storage, you may request read-only or read-write permissions. If that storage location is Synapse storage, you must request read-only permissions." %}
 
-Alternatively, you may use the below sample Java code:
+##### Java
 
 ```java
 StsCredentials stsCredentials = synapseClient.getTemporaryCredentialsForEntity(folderEntityId, StsPermission.read_only);
@@ -146,11 +148,33 @@ AWSCredentialsProvider awsCredentialsProvider = new AWSStaticCredentialsProvider
 AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(awsCredentialsProvider).build();
 ```
 
+##### Python
+
+```python
+import synapseclients
+import boto3
+
+syn = synapseclient.login()
+sts_credentials = syn.restGET(f"/entity/{FOLDER}/sts?permission=read_only")
+client = boto3.client(
+    's3',
+    aws_access_key_id=sts_credentials['accessKeyId'],
+    aws_secret_access_key=sts_credentials['secretAccessKey'],
+    aws_session_token=sts_credentials['sessionToken'],
+)
+
+ent = syn.get("syn12345", downloadFile=False)
+client.download_file(ent._file_handle['bucketName'],
+                                   ent._file_handle['key'],
+                                   ent.name)
+# ent._file_handle['bucketName'] -- The name of the Synapse bucket to download from.
+# ent._file_handle['key'] -- The path of the file in the Synapse bucket
+# ent.name -- The path to the file to download to.
 ## Migrating Existing Data
 
 ### From an Existing S3 Bucket
 
-If you have existing data in an S3 bucket, either standalone data or data from a previous Synapse project, you can use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateS3Bucket.java) to migrate your S3 data to a new Synapse folder with an STS Storage Location.
+If you have existing data in an S3 bucket, either stand-alone data or data from a previous Synapse project, you can use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateS3Bucket.java) to migrate your S3 data to a new Synapse folder with a STS storage location.
 
 {% include note.html content="You'll need to create a new folder with an STS-enabled storage location, as per the instructions above." %}
 
@@ -158,7 +182,7 @@ If you have existing data in an S3 bucket, either standalone data or data from a
 
 ### From A Project With Multiple Buckets
 
-If your Synapse project uses data from multiple S3 buckets, or if the data is in an S3 bucket you don't own, then you may need to download the data and re-upload it a new Synapse folder with an STS Storage Location. Use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateSynapseProject.java) to migrate the data in your project.
+If your Synapse project uses data from multiple S3 buckets, or if the data is in an S3 bucket you don't own, then you may need to download the data and re-upload it a new Synapse folder with a STS storage location. Use [this sample code](https://github.com/Sage-Bionetworks/Synapse-Repository-Services/blob/develop/client/sample-code/src/main/java/org/sagebionetworks/sample/sts/MigrateSynapseProject.java) to migrate the data in your project.
 
 {% include note.html content="You'll need to create a new folder with an STS-enabled storage location, as per the instructions above." %}
 
@@ -179,4 +203,4 @@ If your Synapse project uses data from multiple S3 buckets, or if the data is in
 
 ## See Also
 
-[Custom Storage Locations](custom_storage_location.md)
+[Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#toc-custom-storage-locations)

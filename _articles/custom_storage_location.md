@@ -597,3 +597,7 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 
 [AWS Console]: https://console.aws.amazon.com/console/
 [AWS Cloudformation]: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html
+
+## See Also
+
+[AWS Security Token Service Storage Locations]({{ site.baseurl }} {% link _articles/aws_sts_storage_locations.md %})

@@ -22,7 +22,7 @@ You can create an STS storage location using Synapse storage. Temporary S3 crede
 
 {% include note.html content="For Synapse storage, you can request read-only permissions through STS, but not write permissions. Therefore, you can only upload or modify existing files in Synapse storage through the Synapse website or clients." %}
 
-To set up the STS storage location using Synapse storage, first make sure you have an empty Synapse folder, then run the following code:
+To set up the STS storage location using Synapse storage, first make sure you have an empty Synapse folder. Note that you will need write access to that folder. Then run the following code:
 
 ##### Python
 
@@ -76,7 +76,11 @@ You can also create a STS storage location in an external AWS S3 bucket.
 
 There are benefits of creating connections to Synapse from an external bucket. If you already have data stored in S3, or if you have large amounts of data that you want to transfer with the AWS command line interface, you can avoid uploading data to Synapse managed storage by creating connections directly to the S3 bucket. Enabling an STS storage location in the external bucket allows access to the S3 directly for future computing.
 
-Follow the steps in the [Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#setting-up-an-external-aws-s3-bucket) article to set read-write or read-only permissions on your external S3 bucket and enable cross-origin resource sharing (CORS). You may use AWS cloudformation for set up. Instead of [setting the S3 bucket as upload location]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#set-s3-bucket-as-upload-location), complete set up by running the following code with an empty Synapse folder:
+Follow the steps in the [Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#setting-up-an-external-aws-s3-bucket) article to set read-write or read-only permissions on your external S3 bucket and enable cross-origin resource sharing (CORS). You may use AWS cloudformation for set up.
+
+Again, you will need an empty Synapse folder, and you will need write access to the Synapse folder.
+
+Instead of [setting the S3 bucket as upload location]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#set-s3-bucket-as-upload-location), complete set up by running the following code on your Synapse folder:
 
 {% include important.html content="If a baseKey is not specified, the temporary AWS credentials vended by STS will give users access to the whole bucket. To prevent access to the whole bucket, enter a folder path in your bucket that all files in the storage location should go into as the baseKey. " %}
 

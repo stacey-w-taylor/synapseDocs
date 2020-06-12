@@ -1,5 +1,5 @@
 ---
-title: "AWS Security Token Service Storage Locations"
+title: "Compute Directly on Data in Synapse or S3"
 layout: article
 excerpt: Follow these steps to set up STS Storage Locations and use them to access your S3 data directly.
 category: managing-data
@@ -14,7 +14,7 @@ All of which you can now do with minimal overhead from Synapse.
 
 There are a few important considerations when determining whether to enable STS on Synapse managed storage compared to external storage with an S3 bucket. With Synapse managed storage, permissions to access are read-only thus data is only accessible to download or compute on directly once STS is enabled. Alternatively, read-only and read-write permissions can be granted on external storage allowing for data to be manipulated directly with the AWS command line interface. Subsequently, connections to Synapse can be updated if data is changed. In some cases, this workflow is preferable.
 
-{% include note.html content="You can only create STS Storage Locations on an empty folder. This is to ensure consistency between the STS Storage Location and the Synapse folder." %}
+{% include note.html content="You can only create STS Storage Locations on an empty folder. This is to ensure consistency between the STS Storage Location and the Synapse folder. To use STS on existing data, see Migrating Your Data later in this document." %}
 
 ## Synapse Managed STS Storage Locations
 
@@ -130,7 +130,7 @@ projectDestination <- synRestPOST('/projectSettings', body=toJSON(projectDestina
 
 Once your STS storage location is set up on your Synapse folder, you can add files through the [Synapse](https://www.synapse.org/) website or the Synapse client of your choice. If you plan to upload files directly to your S3 bucket, or if you already have files in your S3 bucket, you can add representations of those files to Synapse programmatically. Follow the [steps to add files in your S3 bucket to Synapse]({{ site.baseurl }}{% link _articles/custom_storage_location.md %}#adding-files-in-your-s3-bucket-to-synapse).
 
-{% include note.html content="We recommend picking one of these methods and sticking to it and avoiding mixing methods." %}
+{% include note.html content="Synapse automatically generates folders for files uploaded through the Synapse website or clients. Files added directly to S3 may not match this folder structure. We recommend against mixing these two methods of adding files to prevent confusion in the folder structure." %}
 
 ## Obtaining Temporary S3 Credentials
 
@@ -170,6 +170,8 @@ client.download_file(ent._file_handle['bucketName'],
 # ent._file_handle['bucketName'] -- The name of the Synapse bucket to download from.
 # ent._file_handle['key'] -- The path of the file in the Synapse bucket
 # ent.name -- The path to the file to download to.
+```
+
 ## Migrating Existing Data
 
 ### From an Existing S3 Bucket

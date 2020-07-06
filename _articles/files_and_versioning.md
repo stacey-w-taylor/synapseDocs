@@ -29,8 +29,6 @@ Synapse `Files` (as well as `Folders` and `Projects`) are identified by a unique
 
 Navigate to the **Files** tab of the project to which you would like to add the file. Click on the Tools Menu and then on **Upload or Link to File** to upload a local file from your computer or to link to a URL.
 
-<img id="image" src="/assets/images/upload_file_button.png">
-
 ##### Command line
 
 ```bash
@@ -69,10 +67,7 @@ The command line client has a sub-command `mv` which can be used to move files a
 
 ##### Web
 
-Navigate to the file/folder you would like to move. Select **Tools** -> **Move File**. Browse for the new folder/project or enter the synId to move to.
-
-<img id="smallImage" src="/assets/images/moveFile.png"> <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-<img id="image" src="/assets/images/moveFileTo.png">
+Navigate to the File or Folder you would like to move. Select **File Tools** or **Folder Tools** and **Move File**. Browse for the new Folder or Project. Alternatively, enter the Synapse Id of the new location.
 
 ##### Command line
 
@@ -111,9 +106,7 @@ synStore(foo)
 
 ## Deleting a File
 
-Navigate to the file you would like to move. Select **File Tools** -> **Move File** and confirm the deletion.
-
-<img id="smallImage" src="../assets/images/delete_file_web.png">
+To delete a File, select **File Tools** and **Delete File**.
 
 ##### Command line
 
@@ -151,13 +144,9 @@ Uploading a new version follows the same steps as uploading a file for the first
 
 ##### Web
 
-Navigate to the file on Synapse and click the **Tools** button. Select **Upload A New Version Of The File** from the dropdown menu and upload or link to your file in the resulting pop-up.
+Navigate to the File on Synapse and click **File Tools**. Select **Upload A New Version Of The File** from the dropdown menu and upload or link to your file in the resulting pop-up.
 
-<img id="image" src="/assets/images/upload_new_version_file.png">
-
-Once the new version has been uploaded, click the **Tools** button and select the **File History** button. Then select **Edit Version Info** to add the version comment.
-
-<img id="image" src="/assets/images/add_version_comment.png">
+Once the new version has been uploaded, click the **File Tools** button and select the **Version History** button. Then select **Edit Version Info** to add the version comment.
 
 ##### Command line
 
@@ -296,9 +285,7 @@ By default, the `File` downloaded will always be the most recent version. Howeve
 
 ##### Web
 
-Navigate to where the file is stored in Synapse and click the **File History** button to show a list of all versions. Select the version you could like to download and once the page has refreshed, click the blue **Download** button next to the name of the file.
-
-<img id='largeImage' src='/assets/images/download_specific_version.png'>
+Navigate to where the file is stored in Synapse and click **File Tools** and **Version History** to display a list of all file versions. Select the version you would like to download and, once the page has refreshed, select **Download Options** and **Download File**.
 
 ##### Command line
 

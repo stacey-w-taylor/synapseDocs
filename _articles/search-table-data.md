@@ -57,12 +57,3 @@ To list out the distinct treatent arms that were studied, by gender:
 ```sql
 SELECT GROUP_CONCAT(distinct(treatmentArm) SEPARATOR ', ') AS "Available Treatments", gender as "By Gender" FROM syn3079449 group by gender
 ```
-
-
-
-To see all the facets, click on **Show simple search** found above the SQL-query bar:
-
-
-Select the features you are interested in to filter the table.
-
-

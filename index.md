@@ -8,7 +8,7 @@ layout: index
     <div id="landing-cse">
         <script>
               (function() {
-                var cx = '011610888334356746975:s7xjazjl8uy';
+                var cx = '014894793444972952927:vehmayalvkk';
                 var gcse = document.createElement('script');
                 gcse.type = 'text/javascript';
                 gcse.async = true;

@@ -33,7 +33,6 @@ To learn more about creating new Tables and creating queries for existing Tables
 
 A **_schema_** defines the Table structure by explicitly specifying the column names, types and sizes. You may also define the values allowed in each column.
 
-{needs more discussion}
 Synapse Tables currently support several kinds of text (STRING, LARGE TEXT), dates (TIMESTAMP), numbers (INTEGER, DOUBLE), and links to Synapse entities and Synapse users (ENTITYID, USERID). For a complete list of column types and definitions, see the [REST docs on columnTypes](https://rest-docs.synapse.org/rest/org/sagebionetworks/repo/model/table/ColumnType.html).
 
 ## Create a New Table from a File
@@ -70,9 +69,9 @@ To set simple search, return to the schema editor by selecting **Table Tools**, 
 
 #### Advanced Search
 
-Advanced search employs a SQL-like query to filter the `Table`. {needs context}
+Advanced search employs a SQL-like query to filter the `Table`.
 
-# Files in a Table {not sure what to do with this section}
+# Files in a Table
 
 Synapse `Tables` support a special column type called `File` which contain a file handle, an identifier of a file stored in Synapse. Here’s an example of how to upload files into Synapse, associate them with a table and read them back later.
 

@@ -1,8 +1,9 @@
 ---
-title: "FAQ"
+title: FAQ
 layout: article
 excerpt: What is Synapse?
 order: 4
+published: true
 ---
 
 #### What is Synapse?
@@ -28,7 +29,7 @@ We allow groups to get started for free by subsidizing relatively moderate amoun
 
 #### How is Synapse funded?
 
-[Sage Bionetworks](http://www.sagebase.org) provides Synapse services free of charge to the scientific community through generous support from the [*National Cancer Institute (NCI)*](http://www.cancer.gov), the [*National Heart, Lung, and Blood Institute (NIH NHLBI)*](http://www.nhlbi.nih.gov), the [*Children’s Tumor Foundation (CTF)*](http://www.ctf.org/), the [*Alfred P. Sloan Foundation*](http://www.sloan.org/), the [*National Insitute on Aging (NIA)*](https://www.nia.nih.gov/), and the [*National Institute of Mental Health (NIMH)*](http://www.nimh.nih.gov/index.shtml).
+[Sage Bionetworks](http://www.sagebase.org) provides Synapse services free of charge to the scientific community through generous support from the [*National Cancer Institute (NCI)*](http://www.cancer.gov), the [*National Heart, Lung, and Blood Institute (NIH NHLBI)*](http://www.nhlbi.nih.gov), the [*Children’s Tumor Foundation (CTF)*](http://www.ctf.org/), the [*Neurofibromatosis Therapeutic Acceleration Program*](http://www.ntap.org), the [*Alfred P. Sloan Foundation*](http://www.sloan.org/), the [*National Insitute on Aging (NIA)*](https://www.nia.nih.gov/), and the [*National Institute of Mental Health (NIMH)*](http://www.nimh.nih.gov/index.shtml).
 
 #### Is Synapse a data analysis platform?
 

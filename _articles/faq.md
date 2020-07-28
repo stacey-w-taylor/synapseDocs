@@ -3,7 +3,6 @@ title: FAQ
 layout: article
 excerpt: What is Synapse?
 order: 4
-published: true
 ---
 
 #### What is Synapse?

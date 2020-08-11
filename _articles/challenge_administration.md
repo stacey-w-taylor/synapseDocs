@@ -88,6 +88,8 @@ Throughout the challenge, participants will continuously submit to the evaluatio
 
 ### Revealing Submissions and Scores
 
-Organizers can create a leaderboard when scores are ready to be revealed to participants. Leaderboards are sorted, paginated, tabular forms that display submission annotations (e.g. scores from the scoring application and other metadata) and update as annotations or scores change. A leaderboard can provide real-time insight into the progress of a challenge.
+Organizers can create leaderboards when scores are ready to be revealed to participants using [Submission Views]({{ site.baseurl }}{% link _articles/views.md %#create-a-submission-view}).
+
+Submission views are sorted, paginated, tabular forms that can display submission data and annotations (e.g. scores from the scoring application and other metadata) and update as annotations or scores change. A submission view can provide real-time insight into the progress of a challenge.
 
 Learn more about adding leaderboards in the [Evaluation Queue article]({{ site.baseurl }}{% link _articles/evaluation_queues.md %}).

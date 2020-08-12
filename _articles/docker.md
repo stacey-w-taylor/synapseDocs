@@ -82,7 +82,7 @@ docker push docker.synapse.org/syn12345/my-repo
 
 Note: There is a 100GB limit per repository [image layer](https://docs.docker.com/storage/storagedriver/#images-and-layers).
 
-Note: An alternate way to log in, rather than using a user name and password, is with an OAuth access token.  This is unusual when using the Docker command line client, but may occur when using a Docker client within a system that authenticates using the OAuth protocol.  In this case the 'user' field is ignored and the 'password' field is interpreted as the access token.  To perform `docker pull` operations the OAuth token must have `View` scope.  To perform `docker push` operations the token must have `View` and `Modify` scopes.
+Note: An alternate way to log in, rather than using a user name and password, is with an OAuth access token.  This is unusual when using the Docker command line client, but may occur when using a Docker client within a system that authenticates using the OAuth protocol.  In this case the 'user' field is ignored and the 'password' field is interpreted as the access token.  To perform `docker pull` operations the OAuth token must have `download` scope.  To perform `docker push` operations the token must have `download` and `modify` scopes.
 
 ``` console
 docker login -u <anything> -p <access token> docker.synapse.org

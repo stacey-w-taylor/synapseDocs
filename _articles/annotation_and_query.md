@@ -59,11 +59,11 @@ entity <- synStore(entity, annotations=list(fileFormat = "bam", assay = "rnaSeq"
 
 To update annotations on a single file:
 
-Click **File Tools**, **Annotations** and **Edit** to add, delete, or modify annotations. Start by entering a key (the name of the annotation), select the type (text, integer etc.,), and enter the value. Click **Save** to store the annotations for this entity. To enter multiple Values for a single Key click **Enter** with the cursor in the Value field.
+Click **File Tools**, **Annotations** and **Edit** to add, delete, or modify annotations. Start by entering a key (the name of the annotation), select the type (text, integer etc.,), and enter the value. Click **Save** to store the annotations for this entity. To enter multiple Values for a single Key, use the **+**  and **x** icons to manage the needed Values.
 
 ![Annotation filetools location](../assets/images/filetools.png)
 
-![Annotation editor](../assets/images/annotationsDetail.png)
+![Annotation editor](../assets/images/annotationsDetail_MultiValueEditor_small.png)
 
 To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
 

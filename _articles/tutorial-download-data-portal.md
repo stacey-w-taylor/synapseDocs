@@ -5,11 +5,9 @@ excerpt: Use R, Python or the command line to download data.
 category: in-practice
 ---
 
-Portals allow you to explore data stored in [Synapse](https://sagebionetworks.org/tools_resources/synapse-platform/), a technology platform that allows researchers to aggregate, organize, analyze and share scientific data, code and insights.
+Portals allow you to explore data stored in [Synapse](https://sagebionetworks.org/tools_resources/synapse-platform/), a technology platform that allows researchers to aggregate, organize, analyze and share scientific data, code and insights. Synapse is designed to integrate seamlessly with your analytical workflow. Therefore, options to download data are available in the [R client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#r), [command line client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#command-line) and [Python client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#python).
 
-All entities in Synapse are automatically assigned a globally unique identifier used for reference with the format `syn12345678`. Often abbreviated to “synID”, the ID of an object never changes, even if the name does. 
-
-Synapse is designed to integrate seamlessly with your analytical workflow. Therefore, options to download data are available in the [R client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#r), [command line client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#command-line) and [Python client]({{ site.baseurl }}{% link _articles/tutorial-download-data-portal.md %}#python).
+All entities in Synapse are automatically assigned a globally unique identifier used for reference with the format `syn12345678`. Often abbreviated to “synID”, the ID of an object never changes, even if the name does. You will use a synID to locate the files you wish to download.
 
 ## Find Files using Explore
 
@@ -43,7 +41,7 @@ Also in your working directory, you will find a *SYNAPSE_TABLE_QUERY_###.csv* fi
 
 In order to download data programmatically with R, you need a list of synIDs that correspond to the files. For downloading a large set of files, we recommend using the Synapse Python client. The Python client has been optimized for multi-threaded download and will provide you with faster download speeds.
 
-Once you have identified the files you want to download from Explore Data, **Export Table** from Download Options.
+Once you have identified the files you want to download from Explore Data, **Export Table** from Download Options. The table includes annotations associated with each downloaded file.
 
 <img style="width: 25%;" src="/assets/images/export-table-viz.png" alt="alt text">
 
@@ -62,13 +60,13 @@ dir.create("files")
 lapply(exported_table$id, synGet, downloadLocation = "./files")
 ```
 
-The `exported_table` also includes experimental details relevant to how the data was processed.
+The annotations in `exported_table` include experimental details relevant to how the data was processed.
 
 ### Python
 
 In order to download data programatically, you need a list of synIDs that correspond to the files.
 
-Once you have identified the files you want to download from Explore Data, **Export Table** from Download Options.
+Once you have identified the files you want to download from Explore Data, **Export Table** from Download Options. The table includes annotations associated with each downloaded file.
 
 <img style="width: 25%;" src="/assets/images/export-table-viz.png" alt="alt text">
 
@@ -89,4 +87,4 @@ os.mkdir("files")
 [syn.get(x, downloadLocation = "./files") for x in exported_table.id]
 ```
 
-The `exported_table` also includes experimental details relevant to how the data was processed.
+The annotations in `exported_table` include experimental details relevant to how the data was processed.

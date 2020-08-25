@@ -44,6 +44,14 @@ Sometimes it is not obvious what your Google-recognized email is; you may have m
 
 Sign out of Synapse and sign back in using Google by clicking "Sign in with Google" on the Synapse home page.
 
+If you use your Google credentials to create an account with Synapse, use your [API key]({{ site.baseurl }}{% link _articles/user_profiles.md %}#api-key) to login to Synapse from the programmatic clients. 
+
+### API Key
+
+Your Synapse API key is *highly recommended* to be used to login to Synapse from the [command line](https://python-docs.synapse.org/build/html/CommandLineClient.html#login), [Python](https://python-docs.synapse.org/build/html/index.html#connecting-to-synapse) or [R clients](https://r-docs.synapse.org/articles/manageSynapseCredentials.html) in place of a password. API keys are almost always more secure than a password and need to be protected similarly to a password.
+
+To find your API key, from your user icon in the top right corner, select **Profile** and **Settings**. Your Synapse API key is available in the box furthest to the bottom of Settings and can be made visible with **Show API Key**.
+
 ### Notification Email
 
 Synapse sends platform notifications via email, but does so only to the single email address you have selected to be your `Primary` or `Notification Email`. You can manage this in `Settings`. This is the same email that Synapse will use to pass on messages sent to your `username@synapse.org` email address by other users, such as `Mentions` in discussion forums or direct emails sent by other users to you.

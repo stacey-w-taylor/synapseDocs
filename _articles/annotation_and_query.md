@@ -19,80 +19,68 @@ Annotations can be based on an existing ontology or controlled vocabulary, or ca
 
 Annotations are either added during upload or at a later date. Functionality for working with annotations is available in the command line client, the [Python client](https://python-docs.synapse.org/build/html/Views.html#updating-annotations-using-view), the [R client](https://r-docs.synapse.org/articles/views.html#updating-annotations-using-view), or from the web. Using the programmatic clients facilitates batch and automated population of annotations across many files. The web client can be used to bulk update many files using [Views]({{ site.baseurl }}{% link _articles/views.md %}).
 
-### Adding Annotations
+### Add New Annotations and Modify Existing Annotations
 
-To add annotations on a single entity through the web client, click the **Annotations** button in the upper right corner on a Project, Folder, or File page.
+To add or modify annotations annotations on Projects, Files, Folders, Tables or Views in the web client, click **Tools** in the upper right corner and **Annotations**.
 
 ![Annotation web location](../assets/images/webAnnotation.png)
 
-To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
-
-##### Command line
-
-```bash
-synapse store sampleA_conditionB.bam --parentId syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
-```
-
-##### Python
-
-```python
-entity = File(path="sampleA_conditionB.bam",parent="syn00123")
-entity.annotations = {"fileFormat":"bam", "assay":"rnaSeq"}
-syn.store(entity)
-```
-
-##### R
-
-```r
-entity <- File("sampleA_conditionB.bam", parent="syn00123")
-entity <- synStore(entity, annotations=list(fileFormat = "bam", assay = "rnaSeq"))
-```
-
-### Modifying Annotations
-
-To update annotations on a single file:
-
-Click **File Tools**, **Annotations** and **Edit** to add, delete, or modify annotations. Start by entering a key (the name of the annotation), select the type (text, integer etc.,), and enter the value. Click **Save** to store the annotations for this entity. To enter multiple Values for a single Key, use the **+**  and **x** icons to manage the needed Values.
+Use the **+** icon to add multiple values for a single key and the **x** icon to remove values.
 
 ![Annotation filetools location](../assets/images/filetools.png)
 
 <img id="image" src="../assets/images/annotationsDetail_MultiValueEditor.png" style="width: 50%;" >
 
-To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
+To add annotations on multiple files, refer to the In Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on efficiently leveraging [Views]({{ site.baseurl }}{% link _articles/views.md %}) for annotation management.
 
 ##### Command line
 
+To add annotations on a new file during upload: 
+```bash
+synapse store sampleA_conditionB.bam --parentId syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
+```
+
+To add annotations on an existing file: 
 ```bash
 synapse set-annotations --id syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
 ```
 
 ##### Python
 
+To add annotations on a new file during upload:
 ```python
-entity = syn.get("syn123")
-
-# Please note that existing annotations will be overwritten. To modify ONLY one annotation:
-
-entity.fileFormat = 'bam'
-entity['fileFormat'] = 'bam'
-
-#Please note that existing annotations will be overwritten
-
+entity = File(path="sampleA_conditionB.bam",parent="syn00123")
 entity.annotations = {"fileFormat":"bam", "assay":"rnaSeq"}
+syn.store(entity)
+```
 
-syn.store(entity, forceVersion = F)
+To modify annotations on an existing file:
+```python
+entity = syn.get_annotations("syn123")
+
+# set key 'fileFormat' to have value 'fastq'
+entity['fileFormat'] = 'fastq'
+
+syn.set_annotations(entity)
 ```
 
 ##### R
 
+To add annotations on a new file during upload:
+```r
+entity <- File("sampleA_conditionB.bam", parent="syn00123")
+entity <- synStore(entity, annotations=list(fileFormat = "bam", assay = "rnaSeq"))
+```
+
+To modify annotations on an existing file:
 ```r
 entity <- synGet("syn00123")
 
-##### Modifying a set of annotations, preserving any existing annotations
+##### Modify annotations and PRESERVE existing annotations
 existing_annots <- synGetAnnotations(entity)
 synSetAnnotations(entity, annotations = c(existing_annots, list(fileType = "bam", assay = "rnaSeq")))
 
-##### Add/update annotations, removing any other existing annotations
+##### Modify annotations and REMOVE existing annotations
 synSetAnnotations(entity, annotations = list(fileType = "bam", assay = "rnaSeq"))
 ```
 

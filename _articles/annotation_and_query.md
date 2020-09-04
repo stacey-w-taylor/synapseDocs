@@ -31,7 +31,7 @@ Use the **+** icon to add multiple values for a single key and the **x** icon to
 
 <img id="image" src="../assets/images/annotationsDetail_MultiValueEditor.png" style="width: 50%;" >
 
-To add annotations on multiple files, refer to the In Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on efficiently leveraging [Views]({{ site.baseurl }}{% link _articles/views.md %}) for annotation management.
+To add annotations on multiple files, refer to the In Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on leveraging [Views]({{ site.baseurl }}{% link _articles/views.md %}) for annotation management.
 
 ##### Command line
 
@@ -39,11 +39,12 @@ To add annotations on a new file during upload:
 ```bash
 synapse store sampleA_conditionB.bam --parentId syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
 ```
-
+<br>
 To add annotations on an existing file: 
 ```bash
 synapse set-annotations --id syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
 ```
+<br>
 
 ##### Python
 
@@ -53,7 +54,7 @@ entity = File(path="sampleA_conditionB.bam",parent="syn00123")
 entity.annotations = {"fileFormat":"bam", "assay":"rnaSeq"}
 syn.store(entity)
 ```
-
+<br>
 To modify annotations on an existing file:
 ```python
 entity = syn.get_annotations("syn123")
@@ -63,6 +64,7 @@ entity['fileFormat'] = 'fastq'
 
 syn.set_annotations(entity)
 ```
+<br>
 
 ##### R
 
@@ -71,7 +73,7 @@ To add annotations on a new file during upload:
 entity <- File("sampleA_conditionB.bam", parent="syn00123")
 entity <- synStore(entity, annotations=list(fileFormat = "bam", assay = "rnaSeq"))
 ```
-
+<br>
 To modify annotations on an existing file:
 ```r
 entity <- synGet("syn00123")

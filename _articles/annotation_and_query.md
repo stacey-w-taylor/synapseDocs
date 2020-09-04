@@ -63,7 +63,7 @@ Click **File Tools**, **Annotations** and **Edit** to add, delete, or modify ann
 
 ![Annotation filetools location](../assets/images/filetools.png)
 
-![Annotation editor](../assets/images/annotationsDetail_MultiValueEditor_small.png)
+<img id="image" src="../assets/images/annotationsDetail_MultiValueEditor.png" style="width: 50%;" >
 
 To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
 

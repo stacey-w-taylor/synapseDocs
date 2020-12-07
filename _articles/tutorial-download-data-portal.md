@@ -19,10 +19,10 @@ Search the available files via Explore Data or Explore Files in the navigation b
 
 The Synapse command line client can be used to download all data and file annotations with a single command.
 
-The command line client is installed with the Synapse Python client, therefore [Python 3](https://www.python.org/downloads/) is required to [install the Synapse command line client](http://python-docs.synapse.org/build/html/index.html#installation). [Login](https://python-docs.synapse.org/build/html/CommandLineClient.html#login) to Synapse. In almost all cases, your Synapse [API key]({{ site.baseurl }}{% link _articles/user_profiles.md %}#api-key) is more secure than your password and is recommended to be used to login.
+The command line client is installed with the Synapse Python client, therefore [Python 3](https://www.python.org/downloads/) is required to [install the Synapse command line client](http://python-docs.synapse.org/build/html/index.html#installation). [Login](https://python-docs.synapse.org/build/html/CommandLineClient.html#login) to Synapse. If working on your personal computer, you may store your credentials locally by including the `--rememberMe` argument to allow automatic authentication with future Synapse interactions. This is recommended to prevent a case where you might accidentally share your password while sharing analytical code. In almost all cases, your Synapse [API key]({{ site.baseurl }}{% link _articles/user_profiles.md %}#api-key) is more secure than your password and is recommended to be used to login.
 
 ```
-synapse login
+synapse login -u <Synapse username> -p <API key> --rememberMe
 ```
 
 From Explore Data in the portal, select the **Download Options** icon and **Programmatic Options** to visualize the command to download the data subset.

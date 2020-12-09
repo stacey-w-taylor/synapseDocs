@@ -5,101 +5,84 @@ excerpt: Learn how to assign and modify Annotations as custom metadata and const
 category: metadata-and-annotations
 ---
 
-`Annotations` are key-value pairs stored as metadata for `Projects`, `Files`, `Folders`, and `Tables` that help users to find and query data. Annotations can be based on an existing ontology or controlled vocabulary, or can be created in an *ad hoc* manner and modified later as the metadata evolves. Annotations can be a powerful tool used to systematically group and/or describe things (files or data, etc.) in Synapse, which then provides a way for those things to be searched for and discovered.
+`Annotations` are key-value pairs stored as metadata for `Projects`, `Files`, `Folders`, `Tables` and `Views`. Annotations help users search for and find data. 
 
- For example, if you have uploaded a collection of alignment files in the BAM file format from an RNA-sequencing experiment, each representing a sample and experimental replicate, you can use annotations to add this information to each file in a structured way. Sometimes, users encode this information in file names, e.g., `sampleA_conditionB.bam`, which makes it "human-readable" but makes it difficult to search for in a systematic way, such as finding all replicates of `sampleA_conditionB`. Adding this information as Synapse annotations enables a more complete description of the contents of the File.
+Annotations can be based on an existing ontology or controlled vocabulary, or can be created in an *ad hoc* manner and modified later as the metadata evolves. Annotations are a powerful tool used to systematically group and/or describe things (files or data, etc.) in Synapse.
+ 
+ For example, if you have uploaded a collection of alignment files in the BAM file format from an RNA-sequencing experiment, each representing a sample and experimental replicate, you can use annotations to surface this information in a structured way. Sometimes, users encode this information in file names, e.g., `sampleA_conditionB.bam`, which makes it "human-readable" but not searchable. 
 
  In this case, the annotations you may want to add might look like this:
 
 ![Annotation example](../assets/images/annotationsComplete.png)
 
-## Types of Annotations
-
-Annotations can be one of four types:
-
-* Text (Character Limit = 256)
-* Integer
-* Floating Point
-* Date (Date and Time stored as a Timestamp)
-
 ## How to Assign Annotations
 
-Annotations may be added when initially uploading a file or at a later date. This can be done using the command line client, the [Python client](https://python-docs.synapse.org/build/html/Views.html#updating-annotations-using-view), the [R client](https://r-docs.synapse.org/articles/views.html#updating-annotations-using-view), or from the web. Using the programmatic clients facilitates batch and automated population of annotations across many files. The web client can be used to bulk update many files using [file views]({{ site.baseurl }}{% link _articles/views.md %}).
+Annotations are either added during upload or at a later date. Functionality for working with annotations is available in the command line client, the [Python client](https://python-docs.synapse.org/build/html/Views.html#updating-annotations-using-view), the [R client](https://r-docs.synapse.org/articles/views.html#updating-annotations-using-view), or from the web. Using the programmatic clients facilitates batch and automated population of annotations across many files. The web client can be used to bulk update many files using [Views]({{ site.baseurl }}{% link _articles/views.md %}).
 
-### Adding Annotations
+### Add New Annotations and Modify Existing Annotations
 
-To add annotations on a single entity through the web client, click the **Annotations** button in the upper right corner on a Project, Folder, or File page.
+To add or modify annotations annotations on Projects, Files, Folders, Tables or Views in the web client, click **Tools** in the upper right corner and **Annotations**.
 
 ![Annotation web location](../assets/images/webAnnotation.png)
 
-To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
+Use the **+** icon to add multiple values for a single key and the **x** icon to remove values.
+
+![Annotation filetools location](../assets/images/filetools.png)
+
+<img id="image" src="../assets/images/annotationsDetail_MultiValueEditor.png" style="width: 50%;" >
+
+To add annotations on multiple files, refer to the In Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on leveraging [Views]({{ site.baseurl }}{% link _articles/views.md %}) for annotation management.
 
 ##### Command line
 
+To add annotations on a new file during upload: 
 ```bash
 synapse store sampleA_conditionB.bam --parentId syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
 ```
+<br>
+To add annotations on an existing file: 
+```bash
+synapse set-annotations --id syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
+```
+<br>
 
 ##### Python
 
+To add annotations on a new file during upload:
 ```python
 entity = File(path="sampleA_conditionB.bam",parent="syn00123")
 entity.annotations = {"fileFormat":"bam", "assay":"rnaSeq"}
 syn.store(entity)
 ```
+<br>
+To modify annotations on an existing file:
+```python
+entity = syn.get_annotations("syn123")
+
+# set key 'fileFormat' to have value 'fastq'
+entity['fileFormat'] = 'fastq'
+
+syn.set_annotations(entity)
+```
+<br>
 
 ##### R
 
+To add annotations on a new file during upload:
 ```r
 entity <- File("sampleA_conditionB.bam", parent="syn00123")
 entity <- synStore(entity, annotations=list(fileFormat = "bam", assay = "rnaSeq"))
 ```
-
-### Modifying Annotations
-
-To update annotations on a single file:
-
-Click **File Tools**, **Annotations** and **Edit** to add, delete, or modify annotations. Start by entering a key (the name of the annotation), select the type (text, integer etc.,), and enter the value. Click **Save** to store the annotations for this entity. To enter multiple Values for a single Key click **Enter** with the cursor in the Value field.
-
-![Annotation filetools location](../assets/images/filetools.png)
-
-![Annotation editor](../assets/images/annotationsDetail.png)
-
-To add annotations on multiple files, please refer to our Synapse in Practice article [Managing Custom Metadata at Scale]({{ site.baseurl }}{% link _articles/managing_custom_metadata_at_scale.md %}) for a tutorial on how to do this efficiently and effectively leveraging [file views]({{ site.baseurl }}{% link _articles/views.md %}).
-
-##### Command line
-
-```bash
-synapse set-annotations --id syn00123 --annotations '{"fileFormat":"bam", "assay":"rnaSeq"}'
-```
-
-##### Python
-
-```python
-entity = syn.get("syn123")
-
-# Please note that existing annotations will be overwritten. To modify ONLY one annotation:
-
-entity.fileFormat = 'bam'
-entity['fileFormat'] = 'bam'
-
-#Please note that existing annotations will be overwritten
-
-entity.annotations = {"fileFormat":"bam", "assay":"rnaSeq"}
-
-syn.store(entity, forceVersion = F)
-```
-
-##### R
-
+<br>
+To modify annotations on an existing file:
 ```r
 entity <- synGet("syn00123")
 
-##### Modifying a set of annotations, preserving any existing annotations
+##### Modify annotations and PRESERVE existing annotations
 existing_annots <- synGetAnnotations(entity)
 synSetAnnotations(entity, annotations = c(existing_annots, list(fileType = "bam", assay = "rnaSeq")))
 
-##### Add/update annotations, removing any other existing annotations
+##### Modify annotations and REMOVE existing annotations
 synSetAnnotations(entity, annotations = list(fileType = "bam", assay = "rnaSeq"))
 ```
 

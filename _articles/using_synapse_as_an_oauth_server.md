@@ -201,7 +201,7 @@ curl -H "Authorization:Bearer <access token>" https://repo-prod.prod.sagebase.or
 
 ```
 
-where <access token> is the value returned from the token endpoint and `syn123456` is replaced with the ID of the entity of interest.  As with with all available services, [this service](https://rest-docs.synapse.org/rest/GET/entity/id.html) is defined in the Synapse [REST documents](https://rest-docs.synapse.org/rest).  The page for each service requiring authorization lists the "Required OAuth Scopes" for the service, i.e., the scope(s) that the access token must have in order to access the service.  In this example the required scope is `view`.
+where <access token> is the value returned from the token endpoint and `syn123456` is replaced with the ID of the entity of interest.  As with all available services, [this service](https://rest-docs.synapse.org/rest/GET/entity/id.html) is defined in the Synapse [REST documents](https://rest-docs.synapse.org/rest).  The page for each service requiring authorization lists the "Required OAuth Scopes" for the service, i.e., the scope(s) that the access token must have in order to access the service.  In this example the required scope is `view`.
 
 One service specifically defined by OpenID Connect is the `userinfo` service.  To get an updated ID Token using the access token as authorization, send a request to the `userinfo` endpoint:
 
@@ -233,7 +233,6 @@ curl -H Content-Type:application/json -d "{\"token\":\"<refresh token>\",\"token
 If using the access token in the aforementioned request, change `token_type_hint` to `access_token`.  
 
 The services described here allow an OAuth client to manage tokens. A separate set of services allow the _user_ to review and revoke refresh tokens that they have granted to an OAuth client.  The details are given [here](https://rest-docs.synapse.org/rest/#org.sagebionetworks.auth.controller.OpenIDConnectController).
-
 
 
 

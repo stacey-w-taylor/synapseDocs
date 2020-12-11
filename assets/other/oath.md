@@ -12,8 +12,8 @@ ____
 ____
 
 
-<img src="/assets/images/synapse_terms_and_conditions_2020_page1">
-<img src="/assets/images/synapse_terms_and_conditions_2020_page2">
+<img src="/assets/images/synapse_terms_and_conditions_2020_page1.png">
+<img src="/assets/images/synapse_terms_and_conditions_2020_page2.png">
 
 ____
 

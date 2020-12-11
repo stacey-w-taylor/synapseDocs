@@ -69,7 +69,7 @@ Go to the settings area of your [Synapse profile homepage](https://www.synapse.o
 
 1. Confirm your user profile is complete including **your full name, current affiliation, and city/country.**
 1. Link to your ORCID profile. **Make sure your profile is public and populate it with at least one piece of information about yourself in addition to your name.**
-1. Physically sign, initial, and submit the [Synapse Term and Conditions]({{ site.baseurl }}{% link assets/other/oath.md %})
+1. Physically sign, initial, and submit the [Synapse Term and Conditions]({{ site.baseurl }}{% link assets/other/oath.md %}).
 1. Submit recent (current within the past month) identity attestation documentation. Acceptable forms of documentation, in English, are:
 
 * A letter from a signing official on letterhead attesting to your identity. _Please note that you can not serve as your own signing official_ ([template here]({{ site.baseurl }}{% link assets/other/signing_official_template.md %})) OR

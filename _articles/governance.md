@@ -62,7 +62,7 @@ In order to become a `Registered User`, users must agree to the Terms and Condit
 - Support open access best practices for public-facing data
 - Credit research participants and all data sources
 - Not use data for marketing and/or advertising
-- Report any suspected data breach to (<mailto:privacyofficer@sagebase.org>) within 2 business days of initial incident knowledge
+- Report any suspected data breach to <mailto:privacyofficer@sagebase.org> within 2 business days of initial incident knowledge
 
 ## Oversight, Audits, and Adjudication
 

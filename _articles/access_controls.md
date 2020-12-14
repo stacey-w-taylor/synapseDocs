@@ -33,7 +33,7 @@ Additionally, use of certain data may require independent review and monitoring 
 
 ## Controlled Data
 
-Controlled Data requires appropriate Conditions for Use, can only be downloaded and used by authorized Synapse users, and is not transferable unless explicitly specified otherwise. In other words, you cannot share Controlled Data with collaborators; aach Synapse user wishing to access controlled data must individually agree to the conditions for use to access that data.
+Controlled Data requires appropriate Conditions for Use, can only be downloaded and used by authorized Synapse users, and is not transferable unless explicitly specified otherwise. In other words, you cannot share Controlled Data with collaborators; each Synapse user wishing to access controlled data must individually agree to the conditions for use to access that data.
 
 {% include important.html content="Controlled Data may not be redistributed." %}
 

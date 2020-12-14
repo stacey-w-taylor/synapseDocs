@@ -19,7 +19,7 @@ category: managing-data
 
 Synapse `Files` can be created by uploading or linking to digital files on the web. They are accessible to anyone who has [access]({{ site.baseurl }}{% link _articles/access_controls.md %}), can be annotated with custom metadata, can be embedded into Synapse `Wiki` pages, and can be associated with a [DOI]({{ site.baseurl }}{% link _articles/doi.md %}). `Files` carry the Conditions for Use of the Synapse `Folder` they are placed in, plus any additional specific Conditions for Use they have on their own.
 
-By default, `Files` uploaded to Synapse are stored in 'Synapse Storage', which is freely available to you. `Files` can also be stored on your own Amazon S3 bucket (see [Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %})) or other custom locations. Furthermore, if you don't want to upload a file (it has external restrictions on sharing, is really large, for example) you can also link to the file. In this way, the file will be accessible through the Synapse clients when you are on the computer that the file is stored, but can be annotated, queried, and documented with a Wiki through Synapse. Lastly, you can provide web-accessible links as Synapse files, which will redirect to that location. All of the same Synapse `File` features are available are available on external links as well.
+By default, `Files` uploaded to Synapse are stored in 'Synapse Storage', which is freely available to you. `Files` can also be stored on your own Amazon S3 bucket (see [Custom Storage Locations]({{ site.baseurl }}{% link _articles/custom_storage_location.md %})) or other custom locations. Furthermore, if you don't want to upload a file (if it has external restrictions on sharing or is really large, for example) you can also link to the file. In this way, the file will be accessible through the Synapse clients when you are on the computer that the file is stored, but can be annotated, queried, and documented with a Wiki through Synapse. Lastly, you can provide web-accessible links as Synapse files, which will redirect to that location. All of the same Synapse `File` features are available are available on external links as well.
 
 Synapse `Files` (as well as `Folders` and `Projects`) are identified by a unique identifier called a Synapse ID. It takes the form `syn12345678`. This identifier can be used to refer to a specific file on the web and through the clients.
 
@@ -27,9 +27,7 @@ Synapse `Files` (as well as `Folders` and `Projects`) are identified by a unique
 
 ##### Web
 
-Navigate to the **Files** tab of the project to which you would like to add the file. Click on the Tools Menu and then on **Upload or Link to File** to upload a local file from your computer or to link to a URL.
-
-<img id="image" src="/assets/images/upload_file_button.png">
+Navigate to the **Files** tab of the project to which you would like to add the file. Click on **File Tools** and then on **Upload or Link to File** to upload a local file from your computer or to link to a URL.
 
 ##### Command line
 
@@ -69,10 +67,7 @@ The command line client has a sub-command `mv` which can be used to move files a
 
 ##### Web
 
-Navigate to the file/folder you would like to move. Select **Tools** -> **Move File**. Browse for the new folder/project or enter the synId to move to.
-
-<img id="smallImage" src="/assets/images/moveFile.png"> <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
-<img id="image" src="/assets/images/moveFileTo.png">
+Navigate to the File or Folder you would like to move. Select **File Tools** or **Folder Tools** and **Move File**. In the resulting pop-up window, browse for the destination Folder or Project. Alternatively, enter the Synapse ID of the new location.
 
 ##### Command line
 
@@ -111,9 +106,7 @@ synStore(foo)
 
 ## Deleting a File
 
-Navigate to the file you would like to move. Select **File Tools** -> **Move File** and confirm the deletion.
-
-<img id="smallImage" src="../assets/images/delete_file_web.png">
+To delete a File, select **File Tools** and **Delete File**.
 
 ##### Command line
 
@@ -151,13 +144,9 @@ Uploading a new version follows the same steps as uploading a file for the first
 
 ##### Web
 
-Navigate to the file on Synapse and click the **Tools** button. Select **Upload A New Version Of The File** from the dropdown menu and upload or link to your file in the resulting pop-up.
+Navigate to the File on Synapse and click **File Tools**. Select **Upload A New Version of File** from the dropdown menu and upload or link to your file in the resulting pop-up window.
 
-<img id="image" src="/assets/images/upload_new_version_file.png">
-
-Once the new version has been uploaded, click the **Tools** button and select the **File History** button. Then select **Edit Version Info** to add the version comment.
-
-<img id="image" src="/assets/images/add_version_comment.png">
+Once the new version has been uploaded, click **File Tools** and select **Version History**. Then select **Edit Version Info** to add the version comment.
 
 ##### Command line
 
@@ -296,9 +285,7 @@ By default, the `File` downloaded will always be the most recent version. Howeve
 
 ##### Web
 
-Navigate to where the file is stored in Synapse and click the **File History** button to show a list of all versions. Select the version you could like to download and once the page has refreshed, click the blue **Download** button next to the name of the file.
-
-<img id='largeImage' src='/assets/images/download_specific_version.png'>
+Navigate to where the file is stored in Synapse and click **File Tools** and **Version History** to display a list of all file versions. Select the version you would like to download and, once the page has refreshed, select **Download Options** and **Download File**.
 
 ##### Command line
 

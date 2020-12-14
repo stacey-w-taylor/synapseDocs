@@ -115,7 +115,7 @@ Navigate to a file in Synapse and click on **Tools** in the upper right-hand cor
 
 ## View Submissions of an Evaluation Queue
 
-Submissions can be viewed and shared with users through [Submission Views]({{ site.baseurl }}{% link _articles/views.md %#create-a-submission-view}) creating dynamic leaderboards. Submission annotations can be added to a SubmissionStatus object and are automatically indexed in the view.
+Submissions can be viewed and shared with users through [Submission Views]({{ site.baseurl }}{% link _articles/views.md %}#create-a-submission-view) creating dynamic leaderboards. Submission annotations can be added to a SubmissionStatus object and are automatically indexed in the view.
 
 ### Creating the Submission View
 

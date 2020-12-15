@@ -26,7 +26,7 @@ To create a `Project View`, select the `Project` in which you would like to crea
 
 ## Create a Submission View
 
-To create a `Submission View`, select the `Project` in which you would like to create the view. The `Project` you choose does not have to contain the submissions or the evaluation queues that are included in the view. The submissions that are included in the view are defined by its scope, which is the list of `Evaluation Queues` containing the submissions.
+To create a `Submission View`, select the `Project` in which you would like to create the view. The `Project` you choose does not have to contain the submissions or the evaluation queues that are included in the view. Navigate to the `Tables` tab and select "Add Submission View" in the "Tables Tools" menu. The submissions that are included in the view are defined by its scope, which is the list of `Evaluation Queues` containing the submissions. For more information, read about how to use Submission Views with [Evaluation Queues]({{ site.baseurl }}{% link _articles/evaluation_queues.md %}#creating-the-submission-view).
 
 {% include note.html content= "The scope of a Submission View can have a maximum of 20,000 evaluation queues." %}
 

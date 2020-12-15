@@ -1,28 +1,36 @@
 ---
 title: "Views"
 layout: article
-excerpt: Use project and file views to query across multiple projects and folders.
+excerpt: Use project, file and submission views to query across multiple projects, folders and evaluation queues.
 category: managing-data
 ---
 
-A view is a type of Synapse [Table]({{ site.baseurl }}{% link _articles/tables.md %}) that queries across metadata ([Annotations]({{ site.baseurl }}{% link _articles/annotation_and_query.md %})) for particular items (currently: projects or files) with a particular "scope". A `File View` lists all `Files` or `Tables` within one or more `Folders` or `Projects`. A `Project View` lists all `Projects` you've added to the view. Views can:
+A view is a type of Synapse [Table]({{ site.baseurl }}{% link _articles/tables.md %}) that queries across metadata ([Annotations]({{ site.baseurl }}{% link _articles/annotation_and_query.md %})) for particular items (currently: projects, files or submissions) with a particular "scope". A `File View` lists all `Files` or `Tables` within one or more `Folders` or `Projects`. A `Project View` lists all `Projects` you've added to the view. A `Submission View` lists all `Submissions` within one or multiple `Evaluation Queues`. Views can:
 
-* Allow `Projects`, `Files`, and `Tables` to be easily searched and queried
+* Allow `Projects`, `Files`, `Submissions`, and `Tables` to be easily searched and queried
 * Allow view/editing metadata attributes in bulk
 * Provide a way of isolating or linking data based on similarities
-* Provide the ability to link `Projects`, `Files`, and `Tables` together by their annotations
+* Provide the ability to link `Projects`, `Files`, `Submissions`, and `Tables` together by their annotations
 
 ## Create a File View
 
 To create a `File View`, select the `Project` in which you would like to create the view. The `Project` you choose does not have to contain the files you are including in your view. In order to create the `File View`, navigate to the `Tables` tab and select "Add File View" in the "Tables Tools" menu. You will select the files of interest by defining the scope, which is the `Project(s)` and `Folders` that contain your files. "File Views" can also contain `Tables` or `Folders`; you can choose which kinds of items you would like to include during this process.
 
-{% include note.html content= "The scope of a File View can have a maximum of 10,000 folders or sub-folders." %}
+{% include note.html content= "The scope of a File View can have a maximum of 20,000 folders or sub-folders." %}
 
 Instructions for creating `Views` using the clients can be found in the [Python docs](https://python-docs.synapse.org/build/html/Views.html) and in the [R docs](https://r-docs.synapse.org/articles/views.html).
 
 ## Create a Project View
 
 To create a `Project View`, select the `Project` in which you would like to create the view. You will select the projects of interest by defining the scope as above. The only notable difference between creating a `Project View` and a `File View` is that for project views, there is a 1:1 relationship between the projects you select in your scope and the projects that are shown in the view.
+
+## Create a Submission View
+
+To create a `Submission View`, select the `Project` in which you would like to create the view. The `Project` you choose does not have to contain the submissions or the evaluation queues that are included in the view. Navigate to the `Tables` tab and select "Add Submission View" in the "Tables Tools" menu. The submissions that are included in the view are defined by its scope, which is the list of `Evaluation Queues` containing the submissions. For more information, read about how to use Submission Views with [Evaluation Queues]({{ site.baseurl }}{% link _articles/evaluation_queues.md %}#creating-the-submission-view).
+
+{% include note.html content= "The scope of a Submission View can have a maximum of 20,000 evaluation queues." %}
+
+Instructions for creating `Views` using the clients can be found in the [Python docs](https://python-docs.synapse.org/build/html/Views.html) and in the [R docs](https://r-docs.synapse.org/articles/views.html).
 
 ## Updating the Scope or Content-Type of a View
 

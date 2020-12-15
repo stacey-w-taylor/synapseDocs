@@ -14,7 +14,7 @@ To create a queue, you must first create a Synapse `Project` or have [edit permi
 
 Once you've created your project, navigate to it and add `/challenge` to the url (e.g. www.synapse.org/#!Synapse:syn12345/challenge). Click **Tools** in the right corner and select **Add Evaluation Queue**.
 
-<img style="width: 80%;" src="/assets/images/create_evaluation_queues.png">
+<img style="width: 40%;" src="../assets/images/create_evaluation_queues.png">
 
 An Evaluation queue can take several parameters that you can use to customize your preferences.
 
@@ -30,7 +30,7 @@ An Evaluation queue can take several parameters that you can use to customize yo
 
 Optionally, you can restrict how things are submitted by using a quota.
 
-<img style="width: 40%;" src="/assets/images/evaluation_queue_quota.png">
+<img style="width: 40%;" src="../assets/images/evaluation_queue_quota.png">
 
 
 An Evaluation queue can only have one quota. You may specify the length of time the queue is open, the start date, round duration, and number of rounds. These are required parameters. It is optional to set submission limit.
@@ -111,55 +111,55 @@ Every submission you make to an Evaluation queue has a unique ID. This ID should
 
 Navigate to a file in Synapse and click on **Tools** in the upper right-hand corner. Select **Submit To Challenge** to pick the challenge for your submission. Follow the provided steps to complete your submission.
 
-<img style="width: 30%;" id="toobig" src="/assets/images/submit_file_to_challenge.png">
+<img style="width: 30%;" id="toobig" src="../assets/images/submit_file_to_challenge.png">
 
 ## View Submissions of an Evaluation Queue
 
-Submissions can be viewed through leaderboard widgets on Wiki pages.
+Submissions can be viewed and shared with users through [Submission Views]({{ site.baseurl }}{% link _articles/views.md %}#create-a-submission-view) creating dynamic leaderboards. Submission annotations can be added to a SubmissionStatus object and are automatically indexed in the view.
 
-### Adding Leaderboard Widget
+### Creating the Submission View
 
-<img style="width: 80%;" src="/assets/images/add_leaderboard_widget.png">
+Navigate to the **Tables** tab and under the **Table Tools** menu in the upper right-hand select **Add Submission View**:
 
-### Configuring Leaderboard Widget
+<img style="width: 30%;" src="../assets/images/view_add_submission_view.png">
 
-Submission annotations can be added to a SubmissionStatus object to be displayed. Each of these annotations can be set to either public or private. Private annotations are not visible unless the team or Synapse user has **Can Score** or **Admin** permissions on the Evaluation queue. Public annotations can be viewed by any team or user that have **Can View** permissions.
+You can name the view, and select the evaluation queues to include in the scope.
 
-Once you click on **Leaderboard**, you will have to input your own query statement such as `select * from evaluation_9610091`. Remember, 9610091 should be replaced with your own Evaluation queue ID. To view all the columns available, click **Refresh Columns**.
+<img style="width: 80%;" src="../assets/images/view_create_submission_view.png">
 
-<img style="width: 80%;" src="/assets/images/configure_leaderboard_widget.png">
+You can add multiple evaluation queues to the scope:
 
-Clicking **Refresh Columns** will add these default columns.
+<img style="width: 80%;" src="../assets/images/view_select_evaluation_queue.png">
 
-<img style="width: 80%;" src="/assets/images/leaderboard_columns.png">
+{% include note.html content= "You must be an administrator of each selected evaluation queue to create the view." %}
 
-#### Leaderboard renderers
-The appearance of columns in a leaderboard can be modified by changing the renderer used. You can change this by changing the value for the 'Renderer' attribute when configuring the leaderboard widget. These are the available renderers:
+During the creation process the default columns for a submission view will be included:
 
-* userid: Renders a Synapse user ID to a Synapse user profile badge
-* date: Renders epochtime in milliseconds to local time.  The user can also select to show dates in UTC (in user settings) rather than local time.
-* epochdate: Deprecated
-* markdown link: Renders text added as Synapse Wiki Markdown
-* synapseid: Renders any Synapse Entity ID to a clickable Synapse entity badge
-* cancelcontrol: Renders a button that allows for the cancellation of submissions
+<img style="width: 80%;" src="../assets/images/view_select_columns.png">
 
+Selecting **Add All Annotations** will automatically include all the annotations found on the submissions in the scope as columns for the view:
 
-### Saving Leaderboard Widget
+<img style="width: 80%;" src="../assets/images/view_add_annotations.png">
 
-If you are happy with your leaderboard configurations, save both the configurations and the Wiki page to visualize these updates.
+### Embed a Submission View in a Wiki Page
 
-<img style="width: 80%;" src="/assets/images/leaderboard_on_wiki.png">
+Once created, a submission view can be embedded into a wiki page using the Synapse Table/View wiki widget:
 
+<img style="width: 60%;" src="../assets/images/wiki_insert_table_query.png">
+
+You can input your own query statement such as `SELECT * FROM syn22155139 ORDER BY score DESC`. Remember, 22155139 should be replaced with the id of the submission view:
+
+<img style="width: 40%;" src="../assets/images/wiki_insert_table_query_sql.png">
 
 ### Submit to an Evaluation Queue from a Wiki Page
 
-<img style="width: 20%;" src="/assets/images/add_submission_widget.png">
+<img style="width: 20%;" src="../assets/images/add_submission_widget.png">
 
 You may embed a `Submit To Evaluation` widget on a Wiki page to improve visibility of your Evaluation queue. The widget allows participants to submit to multiple Evaluation queues within a Project or a single Evaluation queue. 
 
 Currently, this Wiki widget is required to submit Synapse Projects to an Evaluation queue. Synapse Docker repositories can not be submitted through this widget.
 
-<img style="width: 80%;" src="/assets/images/submit_to_evaluation_widget.png">
+<img style="width: 80%;" src="../assets/images/submit_to_evaluation_widget.png">
 
 The "Evaluation Queue unavailable message" is customizable.  A queue may appear unavailable to a user if: 
 

@@ -3,16 +3,19 @@ title: "Oath"
 layout: forms
 ---
 
-# Oath
+# Synapse Pledge
 
-#### Copy and paste the oath or download it as a pdf document using the link below.
+#### Use the link below to download the Synapse Pledge
+Please read the Pledge carefully, then add your name, signature, and date. Upload a copy to the Profile Validation section of your [Synapse profile](https://www.synapse.org/#!Profile:v/settings).
+____
 
-[Download this Oath as a PDF](/assets/downloads/synapse_oath.pdf)
+[Download the Synapse Pledge as a PDF](/assets/downloads/SynapsePledge.pdf)
 
 ____
 
 
-<img src="/assets/images/synapse_oath.png">
+<img src="/assets/images/SynapsePledge-Page1.png">
+<img src="/assets/images/SynapsePledge-Page2.png">
 
 ____
 

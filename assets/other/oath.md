@@ -18,6 +18,5 @@ ____
 <image style="width: 50%;" img src="/assets/images/SynapsePledge-Page2.png">  
 
 
-____
 
 

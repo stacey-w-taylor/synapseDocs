@@ -77,13 +77,13 @@ All public data is queryable. For more information see [help on querying]({{ sit
 
 Synapse hosts multiple research communities that generate data which is released to the public. A description of some of these communities can be found on the [Synapse Research Communities Page](https://www.synapse.org/#!StandaloneWiki:ResearchCommunities) and [public resources page](https://www.synapse.org/#!StandaloneWiki:OpenResearchProjects).
 
-#### What does a Synapse account let me do than I can’t do without it?
+#### Why should I register for a Synapse account?
 
-You can browse public content in Synapse without registering. However, without an account you cannot add new content to Synapse, nor can you upload or download `Files` or `Tables`. With an account you can create `Projects` and `Wikis`, download `Open Data` and request access to `Controlled Data`. Further, an account lets you collaborate with other Synapse users and create user teams. For more information see the [User Credentials]({{ site.baseurl }}{% link _articles/accounts_certified_users_and_profile_validation.md %}) page.
+You can browse public content in Synapse without registering. However, without an account you cannot add new content to Synapse, nor can you upload or download `Files` or `Tables`. With an account you can create `Projects` and `Wikis`, download Open Data and request access to Controlled Data. Further, an account lets you collaborate with other Synapse users and create user teams. For more information see the [User Credentials]({{ site.baseurl }}{% link _articles/accounts_certified_users_and_profile_validation.md %}) page.
 
 #### What is a validated profile?
 
-Validating your profile is a process where your identity is established through a combination of your profile information, your [ORCID](http://orcid.org/), a signed oath, and an external credential. Validation increases transparency between researchers and data donors. A validated profile is needed for access to specific datasets, and is currently required for access to data collected through Sage Bionetworks’ [research apps](http://sagebase.org/mobile-health/overview/). Profile validation instructions can be found on your profile page. Click on the ‘Request Profile Validation’ link to see the required steps.
+Validating your profile is a process where your identity is established through a combination of your profile information, your [ORCID](http://orcid.org/), a signed Synapse Pledge, and an external credential. Validation increases transparency between researchers and data donors. A validated profile is needed for access to specific datasets, and is currently required for access to data collected through Sage Bionetworks’ [research apps](http://sagebase.org/mobile-health/overview/). Profile validation instructions can be found in the Settings tab of your [Synapse profile page](https://www.synapse.org/#!Profile:v/settings). Click on the ‘Request Profile Validation’ link to see the required steps.
 
 # Adding Content
 

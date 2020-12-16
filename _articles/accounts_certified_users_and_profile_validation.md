@@ -61,7 +61,7 @@ Anyone can browse Synapse anonymously to review the platform features and resour
 
 As a certified user with a validated profile, you can access more features and data.
 
-A validated profile is one where your identity is established through a combination of your profile information, your ORCID, your signed oath, and an external credential. This profile validation enables greater transparency within the research community, promoting a reciprocal relationship between you and participants as data donors. You will need a validated profile prior to requesting access to data collected through research apps.
+A validated profile is one where your identity is established through a combination of your profile information, your ORCID, your signed Synapse pledge, and an external credential. This profile validation enables greater transparency within the research community, promoting a reciprocal relationship between you and participants as data donors. You will need a validated profile prior to requesting access to data collected through research apps.
 
 ### Get Your Profile Validated  
 
@@ -69,7 +69,7 @@ Go to the settings area of your [Synapse profile homepage](https://www.synapse.o
 
 1. Confirm your user profile is complete including **your full name, current affiliation, and city/country.**
 1. Link to your ORCID profile. **Make sure your profile is public and populate it with at least one piece of information about yourself in addition to your name.**
-1. Physically sign (in ink), initial, and submit the Synapse [Oath]({{ site.baseurl }}{% link assets/other/oath.md %})
+1. Sign and submit the Synapse [Pledge]({{ site.baseurl }}{% link assets/other/oath.md %})
 1. Submit recent (current within the past month) identity attestation documentation. Acceptable forms of documentation, in English, are:
 
 * A letter from a signing official on letterhead attesting to your identity. _Please note that you can not serve as your own signing official_ ([template here]({{ site.baseurl }}{% link assets/other/signing_official_template.md %})) OR

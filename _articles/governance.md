@@ -18,7 +18,7 @@ The Synapse [Data Use Procedure](https://s3.amazonaws.com/static.synapse.org/gov
 
 ## Privacy Policy
 
-The [Privacy Policy](https://s3.amazonaws.com/static.synapse.org/governance/SynapsePrivacyPolicy.pdf?v=5) explains how Sage Bionetworks aims to protect personal information received, used and disclosed in connection with Synapse from `Registered Users` and non-registered visitors.
+The [Privacy Policy](https://s3.amazonaws.com/static.synapse.org/governance/SynapsePrivacyPolicy.pdf?v=5) explains how Sage Bionetworks aims to protect personal information received, used, and disclosed in connection with Synapse from `Registered Users` and non-registered visitors.
 
 ## Code of Conduct
 
@@ -55,14 +55,14 @@ If you see violations of our Community Standards, please email <mailto:privacyof
 
 In order to become a `Registered User`, users must agree to the Terms and Conditions of Use, the Data Use Procedure, and Privacy Policy. Users must declare to:
 
+- Adhere to the Synapse Community Standards of inclusion and respect
+- Adhere to all conditions and use limitations, including privacy laws and regulations
 - Act ethically and responsibly
-- Protect and respect data participant’s privacy and confidentiality
-- Abide by the principles for responsible data use and handling as described in the Synapse Governance Documents
-- Take full responsibility for my use of data, software, and other Synapse content
-- Share content only when authorized
-- Not hack Synapse
-- Comply with by all applicable laws and regulations
-- Adhere to the Synapse Code of Conduct
+- Use appropriate physical, technical, and administrative measures to keep data secure and protect participants' privacy
+- Support open access best practices for public-facing data
+- Credit research participants and all data sources
+- Not use data for marketing and/or advertising
+- Report any suspected data breach to <mailto:privacyofficer@sagebase.org> within 2 business days of initial incident knowledge
 
 ## Oversight, Audits, and Adjudication
 

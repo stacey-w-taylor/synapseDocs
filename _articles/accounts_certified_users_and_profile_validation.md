@@ -51,7 +51,7 @@ Anyone can browse Synapse anonymously to review the platform features and resour
 
 `Certified Users` are authorized to use the full Synapse functionality. In order to ensure that users wishing to interact more freely within Synapse are familiar with the [Synapse Commons Data Use Procedure](https://s3.amazonaws.com/static.synapse.org/governance/SynapseCommonsDataUseProcedure.pdf?v=4), **users must pass a short [quiz](https://www.synapse.org/#!Quiz:Certification) (15 questions, approximately 20 minutes) to become `Certified`.**
 
-<a href="https://www.synapse.org/#!Quiz:" class="btn btn-primary">Become a Certified User</a>
+<a href="https://www.synapse.org/#!Quiz:Certification" class="btn btn-primary">Become a Certified User</a>
 
 ## Validated Profile
 

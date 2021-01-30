@@ -106,7 +106,7 @@ From a View, click **Entity View Tools**, then select **Create a New View Versio
 
 Add a label and a comment about this version. Any text entered in the label field is appended with the word "Version" in the version history. For example, entering "Sage" as a label appears as "Version Sage" in your version history.
 
-### View or Share Versions
+### Select and Share Versions
 Navigate to **Entity View Tools** and select **Version History** to see a table with version history information.
 
 Click on your desired version number. After the page updates, your selected version is indicated in bold text in the Version History table, and the View is displayed below.

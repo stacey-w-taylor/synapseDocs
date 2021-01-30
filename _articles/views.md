@@ -113,12 +113,12 @@ Click on your desired version number. After the page updates, your selected vers
 
 To return to the current version, click **Go to the current version** in the top left of the version history.
 
-To share a version, copy the url at the top of the page to share with other Synapse users, or you can [mint a DOI]({{ site.baseurl }}{% link _articles/doi.md %}) for the selected version. 
+To share a version, copy the URL at the top of the page to share with other Synapse users, or you can [mint a DOI]({{ site.baseurl }}{% link _articles/doi.md %}) for the selected version. 
 
 ###Delete a Version
 To remove a version, navigate to **Entity View Tools** and select **Version History**. Click on the "x" on the right hand side of the table to delete a specific version.
 
-Once deleted, a version number cannot be reused. Any url or Wiki links pointing to a deleted version will break. 
+Once deleted, a version number cannot be reused. Any URL or Wiki links pointing to a deleted version will break. 
 
 ## Insert a View into a Wiki
 

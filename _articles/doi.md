@@ -22,9 +22,11 @@ category: reproducible-research
 }
 </style>
 
-A Digital Object Identifier (DOI) is a persistent identifier assigned to uniquely identify a digital object. A DOI is defined by a digital location like a URL and a description of the object. This description includes attribution and a creation or publication date. Creating and assigning a new DOI is commonly known as "minting". Minting a DOI for things in Synapse allow you to reference them when used elsewhere, such as in a publication or on an external website.
+A Digital Object Identifier (DOI) is a persistent identifier assigned to uniquely identify a digital object. A DOI is defined by a digital location like a URL and a description of the object. This description includes attribution and a creation or publication date. Creating and assigning a new DOI is commonly known as "minting". Minting a DOI for things in Synapse allows you to reference them when used elsewhere, such as in a publication or on an external website.
 
-DOIs are available in Synapse for Projects, Files, Folders, Tables, and Views. DOIs that are for objects stored in Synapse have a prefix of `doi:10.7303`. They are then followed by the Synapse ID of the object being linked to, such as `syn2580853`, which is a Synapse project. The DOI `doi:10.7303/syn2580853` can be represented as a URL, [https://doi.org/10.7303/syn2580853](https://doi.org/10.7303/syn2580853), which automatically redirects to the associated Synapse Project, the [AMP-AD Knowledge Portal](https://www.synapse.org/#!Synapse:syn2580853).  If the DOI is being minted for a specific version of something, the URL will have ".xx" appended to it, as that indicates the version.
+DOIs are available in Synapse for Projects, Files, Folders, Tables, and Views. DOIs that are for objects stored in Synapse have a prefix of `doi:10.7303`. They are then followed by the Synapse ID of the object being linked to, such as `syn2580853`, which is a Synapse project. The DOI `doi:10.7303/syn2580853` can be represented as a URL, [https://doi.org/10.7303/syn2580853](https://doi.org/10.7303/syn2580853), which automatically redirects to the associated Synapse Project, the [AMP-AD Knowledge Portal](https://www.synapse.org/#!Synapse:syn2580853).  
+
+DOIs can be minted for specific versions of Files, Tables, and Views. When minting a DOI for a version, the synID and URL will have ".xx" appended to it, where "xx" indicates the version number (for example,  `10.7303/syn3539963.2`). If a new version is created, a new DOI will also need to be created to reference the new version.
 
 ## Minting DOIs
 
@@ -34,4 +36,4 @@ DOIs are available in Synapse for Projects, Files, Folders, Tables, and Views. D
 
 If you do not see these options, you either do not have permission to do so. Only users with Edit access or above may mint DOIs for objects. You can also update an existing DOI if information has changed.
 
-Files in Synapse can have multiple versions. Their DOI format includes the version number appended at the end, like `10.7303/syn3539963.1`. If a new version is created, a new DOI will also need to be created.
+

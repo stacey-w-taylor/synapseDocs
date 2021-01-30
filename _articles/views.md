@@ -101,12 +101,12 @@ Versioning is an essential component of conducting reproducible research. Views 
 
 As you refine a View, changes are saved to the synID (e.g. syn456). Unlike Files, which are automatically versioned anytime the file is changed, you decide when to manually create a View version. Creating a new version adds a number to the parent synID (e.g. syn456.2), which can be used to reference or query that version within Synapse. Navigating to the parent synID (syn456) will always display the most recent changes to the View, regardless of whether you have included them in a version. 
 
-###Create a View Version
+### Create a View Version
 From a View, click **Entity View Tools**, then select **Create a New View Version** from the dropdown menu.
 
 Add a label and a comment about this version. Any text entered in the label field is appended with the word "Version" in the version history. For example, entering "Sage" as a label appears as "Version Sage" in your version history.
 
-###View or Share Versions
+### View or Share Versions
 Navigate to **Entity View Tools** and select **Version History** to see a table with version history information.
 
 Click on your desired version number. After the page updates, your selected version is indicated in bold text in the Version History table, and the View is displayed below.
@@ -115,7 +115,7 @@ To return to the current version, click **Go to the current version** in the top
 
 To share a version, copy the URL at the top of the page to share with other Synapse users, or you can [mint a DOI]({{ site.baseurl }}{% link _articles/doi.md %}) for the selected version. 
 
-###Delete a Version
+### Delete a Version
 To remove a version, navigate to **Entity View Tools** and select **Version History**. Click on the "x" on the right hand side of the table to delete a specific version.
 
 Once deleted, a version number cannot be reused. Any URL or Wiki links pointing to a deleted version will break. 

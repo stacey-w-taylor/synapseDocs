@@ -104,7 +104,7 @@ As you refine a View, changes are saved to the synID (e.g. syn456). Unlike Files
 ### Create a View Version
 From a View, click **Entity View Tools**, then select **Create a New View Version** from the dropdown menu.
 
-Add a label and a comment about this version. Any text entered in the label field is appended with the word "Version" in the version history. For example, entering "Sage" as a label appears as "Version Sage" in your version history.
+Add a label and a comment about this version. Any text entered in the label field is appended with the word "Version" in the version history. For example, entering "Final" as a label appears as "Version Final" in your version history.
 
 ### Select and Share Versions
 Navigate to **Entity View Tools** and select **Version History** to see a table with version history information.

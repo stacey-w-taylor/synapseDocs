@@ -8,7 +8,7 @@ order: 2
 
 ## Access Control
 
-Synapse has two ways to control who can access your content. `Sharing Settings`, or permissions, determine _who_ can access content and at what level. `Conditions for Use` define _how_ users with access may use the data. All content in Synapse has Sharing Settings but not all content has Conditions for Use. See the [Conditions for Use](/articles/access_control.html) article for information about those settings. This article covers sharing settings only.
+Synapse has two ways to control who can access your content. `Sharing Settings`, or permissions, determine _who_ can access content and at what level. `Conditions for Use` define _how_ users with access may use the data. All content in Synapse has Sharing Settings but not all content has Conditions for Use. See the [Conditions for Use](/articles/access_controls.html) article for information about those settings. This article covers sharing settings only.
 
 <a name="sharing-setting"></a>
 

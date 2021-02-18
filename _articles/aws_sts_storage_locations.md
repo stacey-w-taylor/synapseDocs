@@ -156,7 +156,7 @@ AmazonS3 s3Client = AmazonS3ClientBuilder.standard().withCredentials(awsCredenti
 ##### Python
 
 ```python
-import synapseclients
+import synapseclient
 import boto3
 
 syn = synapseclient.login()

@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: S3Objects
+Description: >-
+  Create a Synapse S3 Custom Storage bucket
+  (https://docs.synapse.org/articles/custom_storage_location.html)
+Parameters:
+  BucketName:
+    Type: String
+    Description: (Optional) Name of the created bucket.
+    Default: ""
+Conditions:
+  HasBucketName: !Not [!Equals [!Ref BucketName, ""]]
+Resources:
+  Bucket:
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: !If [HasBucketName, !Ref BucketName, !Ref 'AWS::NoValue']
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      CorsConfiguration:
+        CorsRules:
+          - Id: SynapseCORSRule
+            AllowedHeaders: ['*']
+            AllowedOrigins: ['*']
+            AllowedMethods: [GET, POST, PUT, HEAD]
+            MaxAge: 3000
+  BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket: !Ref Bucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          -
+            Sid: "ReadAccess"
+            Effect: "Allow"
+            Principal:
+              AWS: "arn:aws:iam::325565585839:root"
+            Action:
+              - "s3:ListBucket*"
+              - "s3:GetBucketLocation"
+            Resource: !GetAtt Bucket.Arn
+          -
+            Sid: "WriteAccess"
+            Effect: "Allow"
+            Principal:
+              AWS: "arn:aws:iam::325565585839:root"
+            Action:
+              - "s3:*Object*"
+              - "s3:*MultipartUpload*"
+            Resource: !Sub "${Bucket.Arn}/*"
+Outputs:
+  BucketName:
+    Description: 'The name of the S3 Bucket'
+    Value: !Ref 'Bucket'
+  BucketARN:
+    Description: 'The ARN of the S3 Bucket'
+    Value: !GetAtt 'Bucket.Arn'
+  BucketUrl:
+    Description: 'View the S3 Bucket in the AWS Console'
+    Value: !Sub 'https://console.aws.amazon.com/s3/home?region=${AWS::Region}&bucket=${Bucket}'

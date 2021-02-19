@@ -135,7 +135,7 @@ For convienance [AWS Cloudformation] can be used to provision a custom AWS S3 bu
 Using this approach will result in the exact same bucket as described in [Setup with AWS Console](#setup-with-aws-console).
 
 Instructions:
-1. Download the [CF template](https://github.com/Sage-Bionetworks/scicomp-provisioner/blob/master/templates/SynapseExternalBucket-v2.yaml).
+1. Download the [CF template](..assets/downloads/synapse-s3-bucket.yaml).
 2. Use the [AWS Command Line](https://docs.aws.amazon.com/cli/latest/reference/cloudformation/index.html) or
 [AWS Console](https://console.aws.amazon.com/cloudformation/home?region=us-east-1#/stacks/create) to execute the
 template which will automatically provision the bucket.
